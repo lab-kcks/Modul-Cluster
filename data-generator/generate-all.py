@@ -6,6 +6,7 @@ files = [
     'generate-siswa',
     'generate-mata-pelajaran',
     'generate-soal',
+    'generate-jawaban',
 ]
 
 # execute each file (pake importlib)
