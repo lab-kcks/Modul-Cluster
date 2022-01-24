@@ -1,11 +1,8 @@
-<img
-style="margin: 0 auto; width: 100%"
-src="https://www.dicoding.com/blog/wp-content/uploads/2020/05/web-service.jpg">
-
-# Definisi
-Web Service adalah sebuah aplikasi berbasis client-server yang dapat digunakan untuk menjembatani banyak aplikasi untuk saling berkomunikasi satu sama lain tanpa dibatasi oleh bahasa pemrograman tertentu. Dalam Web Service, sebuah teknologi web seperti HTTP digunakan untuk mengirimkan file dengan format machine-readable seperti XML dan JSON.
+# Pengenalan Web Service
+Web Service adalah sebuah aplikasi berbasis **client-server** atau **consumer-provider** yang dapat digunakan untuk menjembatani banyak aplikasi untuk saling **berkomunikasi** satu sama lain __tanpa dibatasi oleh bahasa pemrograman__ tertentu. Dalam Web Service, sebuah *teknologi web* seperti **HTTP** digunakan untuk mengirimkan file dengan format machine-readable seperti **XML** atau **JSON**.
 
 Secara singkat, Web Service dapat didefinisikan sebagai berikut:
+- Sebuah layanan yang tersedia melalui internet
 - Merupakan aplikasi client-server atau komponen aplikasi untuk komunikasi.
 - Client mengirimkan request ke server (service), dan service mengirimkan response ke client.
 - Kumpulan standar atau protokol untuk bertukar informasi antara dua perangkat atau aplikasi.
@@ -16,15 +13,215 @@ https://www.cleo.com/blog/knowledge-base-web-services
 style="margin: 0 auto; width: 100%"
 src="https://static.javatpoint.com/webservicepages/images/web-services.png">
 
+Gambar diatas menunjukkan bagaimana aplikasi-aplikasi yang ditulis dengan berbagai bahasa dapat **saling berinteraksi** antar satu sama lain ataupun dengan Web Service itu sendiri. Interaksi ini dapat berupa permintaan data, mengirimkan notifikasi, atau mengeksekusi instruksi dari aplikasi tersebut.
+
 # Jenis
-### XML-RPC (Remote Procedure Call)
-Protokol XML paling dasar untuk bertukar data antara berbagai perangkat di jaringan. XML-RPC menggunakan HTTP untuk dapat dengan cepat dan mudah berkomunikasi  dari klien ke server dan sebaliknya.
+https://www.studytonight.com/rest-web-service/types-of-webservices
+## XML-RPC (Remote Procedure Call)
+Protokol XML paling dasar untuk bertukar data antara berbagai perangkat di jaringan. XML-RPC menggunakan HTTP untuk dapat dengan cepat dan mudah berkomunikasi  dari klien ke server dan sebaliknya. Dalam XML-RPC interaksi ini dilakukan dengan mengirim **dokumen xml** yang didalamnya berisi **metode dan parameter dari permintaan yang diinginkan**.
+
+Seperti namanya XML-RPC memanfaatkan komunikasi **RPC** (Remote Procedure Call) dimana satu komputer dapat membuat komputer lain mengeksekusi sebuah fungsi/subroutine seakan akan dilakukan oleh komputer lain tersebut. Berbeda dengan **IPC** (Inter-process communication) dimana sebuah proses berkomunikasi dengan process lain **didalam komputer/host machine yang sama**.
+
+**Contoh Request XML-RPC**:
+```xml
+<?xml version="1.0"?>
+<methodCall>
+  <methodName>examples.getStateName</methodName>
+  <params>
+    <param>
+        <value><i4>40</i4></value>
+    </param>
+  </params>
+</methodCall>
+```
+
+Dapat dilihat dalam contoh request tersebut terdapat tag `<methodCall>` yang memberikan informasi bahwa didalam tag tersebut akan ada nama *method* yang ingin dipanggil dan *parameter* apa saja yang diberikan. Dalam tag `<methodName>` ada nama method yang ingin dipanggil. Method ini sendiri dapat berupa *fungsi/function* dalam pemrograman yang bertugas untuk melakukan intruksi-intruksi tertentu. Dalam tag `<params>` berisi *parameter* yang diberikan, parameter ini dapat dianggap seperti argumen dalam yang akan digunakan dalam *function* yang dipanggil pada `<methodName>`.
+
+**Contoh Response XML-RPC**:
+```xml
+<?xml version="1.0"?>
+<methodResponse>
+  <params>
+    <param>
+        <value><string>South Dakota</string></value>
+    </param>
+  </params>
+</methodResponse>
+```
+
+Ketika request dari client ini **berhasil diproses** oleh server, server akan mengirimkan kembali response dari request yang diberikan tadi sesuai dengan *method* dan *parameter* yang diberikan. Dalam contoh request tadi client mengirimkan request untuk meminta data **negara bagian** (state) dengan id `40` (dilihat dari parameter request), maka server memberikan response berupa string yang berisi `South Dakota`. Client akan menerima response yang dikirim oleh server ini.
+
+**Contoh Fault/Error Response XML-RPC**:
+```xml
+<?xml version="1.0"?>
+<methodResponse>
+  <fault>
+    <value>
+      <struct>
+        <member>
+          <name>faultCode</name>
+          <value><int>4</int></value>
+        </member>
+        <member>
+          <name>faultString</name>
+          <value><string>Too many parameters.</string></value>
+        </member>
+      </struct>
+    </value>
+  </fault>
+</methodResponse>
+```
+
+Tentu saja akan ada kemungkinan client mengirimkan **request yang tidak sesuai**, kadang melakukan request pada data yang tidak tersedia, atau request yang dikirim tidak memiliki struktur yang benar. Server harus tetap dapat menangani request ini, proses ini disebut sebagai **Error Handling**, dalam kasus ini **client mengirimkan request dengan parameter berlebih** sehingga server tidak dapat memroses data tersebut. Server akan mengirimkan sebuah *Error Message* yang sesuai sehingga client dapat mengetahui error tersebut.
+
+### Tag tipe data (data-type) dalam XML-RPC
+- **Array**
+
+```xml
+<array>
+  <data>
+    <value><i4>1404</i4></value>
+    <value><string>Something here</string></value>
+    <value><i4>1</i4></value>
+  </data>
+</array>
+```
+
+> *Array of values*, tidak menyimpan `key`
+
+- **Base64**
+```xml
+<base64>eW91IGNhbid0IHJlYWQgdGhpcyE=</base64>
+```
+> Data biner yang *di-encode* Base64
+
+- **Boolean**
+```xml
+<boolean>1</boolean>
+```
+> Boolean logical value (0 atau 1)
+
+- **Date/Time**
+```xml
+<dateTime.iso8601>19980717T14:08:55Z</dateTime.iso8601>
+```
+> Date and time in ISO 8601 format
+
+- **Double**
+```xml
+<double>-12.53</double>
+```
+> Angka floating point presisi double
+
+- **Integer**
+```xml
+<int>42</int>
+```
+> Atau
+
+```xml
+<i4>42</i4>
+```
+> Bilangan bulat, integer.
+
+- **String**
+```xml
+<string>Hello world!</string>
+```
+> atau
+
+```xml
+Hello world!
+```
+> Rangkaian karakter. Harus mengikuti *encoding* XML.
+
+- **Struct**
+```xml
+<struct>
+  <member>
+    <name>foo</name>
+    <value><i4>1</i4></value>
+  </member>
+  <member>
+    <name>bar</name>
+    <value><i4>2</i4></value>
+  </member>
+</struct>
+```
+> Associative array
+
+- **nil**
+```xml
+<nil/>
+```
+
+> Nilai nil; ekstensi XML-RPC
+
+<br><br>
+
 
 ### SOAP (Simple Object Access Protocol)
 Protokol layanan Web berbasis XML untuk bertukar data dan dokumen melalui HTTP atau SMTP (Simple Mail Transfer Protocol). Ini memungkinkan proses yang beroperasi pada sistem yang berbeda untuk berkomunikasi menggunakan XML.
 
 ### REST (Representational State Transfer)
 Menyediakan komunikasi dan konektivitas antara perangkat dan internet berbasis API. Sebagian besar layanan RESTful menggunakan HTTP sebagai protokol pendukungnya.
+
+# Bagaimana Web Service Bekerja
+Salah satu cara Web Service berinteraksi yaitu melalui protokol HTTP/HTTPS, Ada satu atau sekumpulan komputer yang bertindak sebagai client yang akan mengirimkan permintaan (request) kepada server dengan method-method (**HTTP Methods**) yang ada dan server akan mengirimkan data kembali (response) kepada client diikuti dengan kode status (**HTTP Status Code**).
+
+## HTTP Methods
+
+## HTTP Status Code
+
+## Routes/Endpoints
+
+
+
+
+
+
+
+
+
+# Contoh Web Service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Dalam HTTP terdapat berbagai method yang dapat digunakan, contohnya:
 
@@ -73,6 +270,8 @@ Pada database data tersebut juga sudah tersimpan:
 
 
 # Sumber:
+https://en.wikipedia.org/wiki/Remote_procedure_call
+https://en.wikipedia.org/wiki/XML-RPC
 https://www.dicoding.com/blog/apa-itu-web-service/
 https://www.guru99.com/web-service-architecture.html
 https://www.javatpoint.com/what-is-web-service
