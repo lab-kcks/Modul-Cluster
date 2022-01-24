@@ -22,18 +22,15 @@ for idx_mapel in range(total_mapel):
         id += 1
 
         # gunakan faker untuk membuat susunan string random maksimal 200 karakter
-        body = fake.text(max_nb_chars=200)
+        body = fake.paragraph()
 
         pilihan_jawaban = dict()
         for pilihan in config.pilihan_jawaban:
-            pilihan_jawaban[pilihan] = json.dumps(fake.text(max_nb_chars=200))
+            pilihan_jawaban[pilihan] = fake.paragraph()
 
         # pilih satu jawaban random berdasarkan list dari config
         jawaban_benar = fake.random_element(elements=config.pilihan_jawaban)
 
-        # ubah dict menjadi json agar mudah disimpan di database
-        pilihan_jawaban_json = json.dumps(pilihan_jawaban)
-
-        writer.writerow([id, id_mapel, body, pilihan_jawaban_json, jawaban_benar])
+        writer.writerow([id, id_mapel, body, pilihan_jawaban, jawaban_benar])
 
 f.close()
