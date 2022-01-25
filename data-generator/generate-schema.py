@@ -26,8 +26,8 @@ Table('Mata_Pelajaran', metadata_obj,
 Table('Siswa', metadata_obj,
     Column('id', Integer, primary_key=True),
     Column('id_kota', Integer, ForeignKey("Kota.id"), nullable=false),
-    Column('nama', String(255)),
     Column('nrp', String(255)),
+    Column('nama', String(255)),
 )
 
 Table('Soal', metadata_obj,
