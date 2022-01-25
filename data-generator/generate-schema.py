@@ -1,3 +1,7 @@
+"""
+Opsi lain untuk bikin schema sql
+"""
+
 from sqlalchemy import *
 
 db_username = 'm42nk'
