@@ -2,7 +2,7 @@ import csv
 import config
 
 f = open('csv/mata_pelajaran.csv', 'w')
-writer = csv.writer(f, doublequote=True, quoting=csv.QUOTE_ALL)
+writer = csv.writer(f, doublequote=True, quoting=csv.QUOTE_ALL, lineterminator="\n")
 
 header = ['id', 'nama']
 writer.writerow(header)

@@ -5,7 +5,7 @@ import config
 f = open('csv/kota.csv', 'w')
 
 # inisiasi `writer` dari csv untuk dapat menulis kedalam file csv
-writer = csv.writer(f, doublequote=True, quoting=csv.QUOTE_ALL)
+writer = csv.writer(f, doublequote=True, quoting=csv.QUOTE_ALL, lineterminator="\n")
 
 # header yang akan ditulis (berupa list)
 header = ['id', 'nama']

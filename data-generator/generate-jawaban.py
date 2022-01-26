@@ -10,7 +10,7 @@ total_soal = config.total_soal
 id = 0
 
 f = open("csv/jawaban.csv", "w")
-writer = csv.writer(f, doublequote=True, quoting=csv.QUOTE_ALL)
+writer = csv.writer(f, doublequote=True, quoting=csv.QUOTE_ALL, lineterminator="\n")
 header = ["id", "id_siswa", "id_soal", "jawaban"]
 writer.writerow(header)
 

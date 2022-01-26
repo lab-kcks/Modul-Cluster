@@ -18,7 +18,7 @@ total_siswa = config.total_siswa
 id = 0
 
 f = open("csv/siswa.csv", "w")
-writer = csv.writer(f, doublequote=True, quoting=csv.QUOTE_ALL)
+writer = csv.writer(f, doublequote=True, quoting=csv.QUOTE_ALL, lineterminator="\n")
 header = ["id", "id_kota", "nrp", "nama"]
 
 writer.writerow(header)
