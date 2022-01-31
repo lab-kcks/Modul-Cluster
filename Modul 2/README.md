@@ -163,24 +163,293 @@ Hello world!
 ### SOAP (Simple Object Access Protocol)
 Protokol layanan Web berbasis XML untuk bertukar data dan dokumen melalui HTTP atau SMTP (Simple Mail Transfer Protocol). Ini memungkinkan proses yang beroperasi pada sistem yang berbeda untuk berkomunikasi menggunakan XML.
 
+TODO
+
 ### REST (Representational State Transfer)
 Menyediakan komunikasi dan konektivitas antara perangkat dan internet berbasis API. Sebagian besar layanan RESTful menggunakan HTTP sebagai protokol pendukungnya.
+
+TODO
 
 # Bagaimana Web Service Bekerja
 Salah satu cara Web Service berinteraksi yaitu melalui protokol HTTP/HTTPS, Ada satu atau sekumpulan komputer yang bertindak sebagai client yang akan mengirimkan permintaan (request) kepada server dengan method-method (**HTTP Methods**) yang ada dan server akan mengirimkan data kembali (response) kepada client diikuti dengan kode status (**HTTP Status Code**).
 
+## Struktur HTTP
+
+TODO
+
 ## HTTP Methods
+Dalam protokol HTTP, ada berbagai **method** yang dapat digunakan untuk meminta data (request) ke server. Setiap **method** ini sudah memliki standarisasi kegunaanya, misalnya seperti `GET` untuk meminta data, dan `POST` untuk mengirimkan data. Tetapi, hal ini bukan menjadi aturan yang harus diikuti, dalam artian kita dapat mengirimkan data menggunakan `GET`, hal tadi hanyalah sebuah standar spesifikasi untuk menyamakan struktur dari Web Service atau API yang kita ingin buat.
+
+Berikut adalah method-method yang ada dalam HTTP:
+
+### GET
+Metode HTTP GET digunakan untuk **membaca** (atau mengambil) *resource*.
+Pada path yang benar, GET mengembalikan representasi data dalam XML atau JSON dan *response code* `HTTP 200 (OK)`.
+Dalam path salah, GET umumnya mengembalikan `404 (Not Found)` atau `400 (Bad Request)`.
+
+Menurut desain spesifikasi HTTP, permintaan GET (bersama dengan HEAD) hanya digunakan untuk membaca data dan tidak mengubahnya. Jangan mengekspos operasi yang tidak aman melalui GET seperti password dan data sensitif lainnya.
+
+Contoh:  
+GET http://www.example.com/customers/12345  
+GET http://www.example.com/customers/12345/orders  
+GET http://www.example.com/buckets/sample  
+
+### HEAD
+Metode HEAD meminta respons yang identik dengan permintaan GET, tetapi tanpa isi respons (response body).
+
+### POST
+Metode POST mengirimkan entitas ke *resource* yang ditentukan, sering kali menyebabkan perubahan status atau `side-effect` pada server.
+Pada pembuatan yang berhasil, server akan mengirimkan status HTTP 201(Created), atau header Lokasi dengan link ke resource yang baru dibuat dengan status HTTP 201. Misal kita POST /user, maka dapat me-return /user/1, dimana user identifier `1` adalah user yang baru saja kita buat.
+
+Contoh:  
+POST http://www.example.com/customers  
+POST http://www.example.com/customers/12345/orders  
+
+### PUT
+Metode PUT menggantikan semua representasi saat ini dari *resource* target dengan payload permintaan. PUT paling sering digunakan untuk melakukan **update**, mengirimkan PUT ke URI yang dikenal dengan `request body` yang berisi data resource asli yang sudah di modifikasi.
+
+Misal data asli:
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "address": "Indonesia",
+  "age": 30
+}
+```
+
+Lakukan PUT ke `/user/1` dengan `request body`:
+```json
+{
+  "id": 1,
+  "name": "John Doe Aja",
+  "address": "Bekasi",
+  "age": 31
+}
+```
+Akan mengganti user dengan id `1` dengan data baru yang dikirimkan.
+
+Contoh:  
+PUT http://www.example.com/customers/12345  
+PUT http://www.example.com/customers/12345/orders/98765  
+PUT http://www.example.com/buckets/secret_stuff  
+
+### PATCH
+Metode PATCH menerapkan modifikasi parsial pada *resource*. Permintaan PATCH hanya perlu berisi perubahan pada `resource`, bukan `resource` yang lengkap.
+
+Misal data asli:
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "address": "Indonesia",
+  "age": 30
+}
+```
+
+Lakukan PUT ke `/user/1` dengan `request body`:
+```json
+{
+  "name": "John Doe Aja",
+  "age":  68
+}
+```
+Akan **mengubah nama dan usia** user dengan id `1` dengan data baru yang dikirimkan, tanpa mengubah data lain yang tidak menjadi `request body`.
+
+Contoh:  
+PATCH http://www.example.com/customers/12345  
+PATCH http://www.example.com/customers/12345/orders/98765  
+PATCH http://www.example.com/buckets/secret_stuff  
+
+### DELETE
+Metode DELETE menghapus *resource* yang ditentukan.
+
+Pada proses DELETE yang berhasil, server dapat mengirimkan status HTTP 200 (OK) dengan `response body` yang berisi data yang dihapus (tetapi sering dianggap membuang-buang bandwith), atau status HTTP 204 (No Content) tanpa `response body` untuk menandakan data telah berhasil dihapus.
+
+Contoh:  
+DELETE http://www.example.com/customers/12345  
+DELETE http://www.example.com/customers/12345/orders  
+DELETE http://www.example.com/bucket/sample  
+
+### Dengan operasi CRUD
+Berikut adalah tabel method yang paling umum digunakan beserta *use-case* dan response nya nya:
+<table>
+    <thead>
+        <tr>
+            <th rowspan=2>Method</th>
+            <th rowspan=2>CRUD</th>
+            <th colspan=2>Response</th>
+        </tr>
+        <tr>
+          <th>Koleksi Data <br> <code>/siswa</code></th>
+          <th>Data Spesifik <br> <code>/siswa/{id}</code></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>POST</td>
+            <td>Create</td>
+            <td>
+              <code>201 (Created)</code>, 'Location' header with link to /customers/{id} containing new ID.
+            </td>
+            <td>
+              <code>404 (Not Found)</code>, <code>409 (Conflict)</code> if resource already exists.
+            </td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>Read</td>
+            <td>
+              <code>200 (OK)</code>, list of customers. Use pagination, sorting and filtering to navigate big lists.
+            </td>
+            <td>
+              <code>200 (OK)</code> single customer.
+              <code>404 (Not Found)</code> if ID not found or invalid.
+            </td>
+        </tr>
+        <tr>
+          <td>PUT</td>
+          <td>Update/Replace</td>
+          <td><code>405 (Method Not Allowed)</code>, unless you want to update/replace every resource in the entire collection.</td>
+          <td>
+          <code>200 (OK)</code> or <code>204 (No Content)</code>. <code>404 (Not Found)</code> if ID not found or invalid.
+          </td>
+        </tr>
+        <tr>
+          <td>PATCH</td>
+          <td>Update/Modify</td>
+          <td><code>405 (Method Not Allowed)</code>, unless you want to modify the collection itself.</td>
+          <td><code>200 (OK) or 204 (No Content)</code>. <code>404 (Not Found)</code>, if ID not found or invalid.</td>
+        </tr>
+        <tr>
+          <td>DELETE</td>
+          <td>Delete</td>
+          <td><code>405 (Method Not Allowed)</code>, unless you want to delete the whole collection—not often desirable.</td>
+          <td><code>200 (OK)</code>. <code>404 (Not Found)</code>, if ID not found or invalid.</td>
+        </tr>
+    </tbody>
+</table>
+
+
+### Method Lain
+Selain method diatas, ada beberapa method lain yang dapat digunakan seperti:  
+**CONNECT**: Metode CONNECT membuat tunnel ke server yang diidentifikasi oleh *resource* target.  
+**OPTIONS**: Metode OPTIONS menjelaskan opsi komunikasi untuk *resource* target.  
+**TRACE**: Metode TRACE melakukan tes loop-back pesan di sepanjang jalur ke *resource* target.  
 
 ## HTTP Status Code
+Pada setiap response yang dikirimkan oleh server, akan terdapat status code yang menunjukkan status dari proses request.
+Semua status code respons HTTP dipisahkan menjadi **lima kelas atau kategori**. Digit pertama kode status mendefinisikan kelas respons, sedangkan dua digit terakhir tidak memiliki peran klasifikasi atau kategorisasi.
+
+Ada lima kelas yang ditentukan oleh standar:
+<details>
+<summary><b>1xx informational response</b> – permintaan diterima, proses berlanjut</summary>
+
+| Status code       | Meaning             |
+| ---               | ---                 |
+| 100               | Continue            |
+| 101               | Switching protocols |
+| 102               | Processing          |
+| 103               | Early Hints         |
+</details>
+
+<details>
+<summary><b>2xx successful</b> – permintaan berhasil diterima, dipahami, dan diterima</summary>
+
+| Status code       | Meaning             |
+| ---               | ---                 |
+| 200           | OK                            |
+| 201           | Created                       |
+| 202           | Accepted                      |
+| 203           | Non-Authoritative Information |
+| 204           | No Content                    |
+| 205           | Reset Content                 |
+| 206           | Partial Content               |
+| 207           | Multi-Status                  |
+| 208           | Already Reported              |
+| 226           | IM Used                       |
+</details>
+
+<details>
+<summary><b>3xx redirection</b> – tindakan lebih lanjut perlu diambil untuk menyelesaikan permintaan</summary>
+
+| Status code       | Meaning             |
+| ---               | ---                 |
+| 300               | Multiple Choices    |
+| 301               | Moved Permanently   |
+| 302             | Found (Previously "Moved Temporarily") |
+| 303             | See Other                              |
+| 304             | Not Modified                           |
+| 305             | Use Proxy                              |
+| 306             | Switch Proxy                           |
+| 307             | Temporary Redirect                     |
+| 308             | Permanent Redirect                     |
+</details>
+
+<details>
+<summary><b>4xx client error</b> – permintaan mengandung sintaks yang buruk atau tidak dapat dipenuhi</summary>
+
+| Status code       | Meaning             |
+| ---               | ---                 |
+| 400              | Bad Request                     |
+| 401              | Unauthorized                    |
+| 402              | Payment Required                |
+| 403              | Forbidden                       |
+| 404              | Not Found                       |
+| 405              | Method Not Allowed              |
+| 406              | Not Acceptable                  |
+| 407              | Proxy Authentication Required   |
+| 408              | Request Timeout                 |
+| 409              | Conflict                        |
+| 410              | Gone                            |
+| 411              | Length Required                 |
+| 412              | Precondition Failed             |
+| 413              | Payload Too Large               |
+| 414              | URI Too Long                    |
+| 415              | Unsupported Media Type          |
+| 416              | Range Not Satisfiable           |
+| 417              | Expectation Failed              |
+| 418              | I'm a Teapot                    |
+| 421              | Misdirected Request             |
+| 422              | Unprocessable Entity            |
+| 423              | Locked                          |
+| 424              | Failed Dependency               |
+| 425              | Too Early                       |
+| 426              | Upgrade Required                |
+| 428              | Precondition Required           |
+| 429              | Too Many Requests               |
+| 431              | Request Header Fields Too Large |
+| 451              | Unavailable For Legal Reasons   |
+</details>
+
+<details>
+<summary><b>5xx server error</b> – server gagal memenuhi permintaan yang tampaknya valid</summary>
+
+| Status code       | Meaning             |
+| ---               | ---                 |
+| 500              | Internal Server Error           |
+| 501              | Not Implemented                 |
+| 502              | Bad Gateway                     |
+| 503              | Service Unavailable             |
+| 504              | Gateway Timeout                 |
+| 505              | HTTP Version Not Supported      |
+| 506              | Variant Also Negotiates         |
+| 507              | Insufficient Storage            |
+| 508              | Loop Detected                   |
+| 510              | Not Extended                    |
+| 511              | Network Authentication Required |
+</details>
+
+Untuk informasi lebih detail dapat dilihat di [HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
 ## Routes/Endpoints
+TODO
 
 
 
 
-
-
-
+# Install Postman
+TODO
 
 
 # Contoh Web Service
