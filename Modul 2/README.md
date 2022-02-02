@@ -169,7 +169,7 @@ Menyediakan komunikasi dan konektivitas antara perangkat dan internet berbasis A
 # Bagaimana Web Service Bekerja
 Salah satu cara Web Service berinteraksi yaitu melalui protokol HTTP/HTTPS, Ada satu atau sekumpulan komputer yang bertindak sebagai client yang akan mengirimkan permintaan (request) kepada server dengan method-method (**HTTP Methods**) yang ada dan server akan mengirimkan data kembali (response) kepada client diikuti dengan kode status (**HTTP Status Code**).
 
-## Grafik web service flow
+## Alur Web Service
 
 -> flow website (client adalah user)
   - client mengunjungi url tertentu di browser
