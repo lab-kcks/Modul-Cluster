@@ -163,19 +163,80 @@ Hello world!
 ### SOAP (Simple Object Access Protocol)
 Protokol layanan Web berbasis XML untuk bertukar data dan dokumen melalui HTTP atau SMTP (Simple Mail Transfer Protocol). Ini memungkinkan proses yang beroperasi pada sistem yang berbeda untuk berkomunikasi menggunakan XML.
 
-TODO
-
 ### REST (Representational State Transfer)
-Menyediakan komunikasi dan konektivitas antara perangkat dan internet berbasis API. Sebagian besar layanan RESTful menggunakan HTTP sebagai protokol pendukungnya.
-
-TODO
+Menyediakan komunikasi dan konektivitas antara perangkat dan internet berbasis API. Sebagian besar layanan RESTful menggunakan HTTP sebagai protokol pendukungnya. Penejelasan lebih lanjut mengenai REST akan dibahas di bagian berikutnya.
 
 # Bagaimana Web Service Bekerja
 Salah satu cara Web Service berinteraksi yaitu melalui protokol HTTP/HTTPS, Ada satu atau sekumpulan komputer yang bertindak sebagai client yang akan mengirimkan permintaan (request) kepada server dengan method-method (**HTTP Methods**) yang ada dan server akan mengirimkan data kembali (response) kepada client diikuti dengan kode status (**HTTP Status Code**).
 
+## Grafik web service flow
+
+-> flow website (client adalah user)
+  - client mengunjungi url tertentu di browser
+  - browser mengirimkan request ke server dengan method `get`
+  - server menerima request dan mengirimkan halaman yang diminta ke client
+  - browser menerima response dari server
+  - browser menampilkan (me-render) halaman yang diterima dari server
+  - client melihat halaman yang sudah di-render
+
+-> flow webservice (client dapat berupa user ataupun aplikasi lain)
+  - client mengirimkan request ke server
+  - server menerima request dan melakukan parsing request
+  - server melakukan operasi yang diminta pada request
+  - server mengirimkan response ke client
+  - client menerima response dan melakukan parsing response
+
 ## Struktur HTTP
 
-TODO
+Pada bentuk aslinya, sebuah HTTP Request atau bisa disebut juga HTTP Message berbentuk beberapa baris *plain-text* yang dikirimkan oleh client dan server. Oleh karena bentuknya yang hanya berupa plain-text, kita dapat mengirimkannya melalui tools command-line seperti [curl](https://en.wikipedia.org/wiki/CURL). Meskipun demikian, untuk mempermudah interaksi yang melibatkan HTTP Requests, biasanya kita menggunakan tools lain seperti [postman](https://getpostman.com), atau [insomnia](https://insomnia.rest/), tools-tools tersebut biasa disebut sebagai **HTTP Client**.
+
+Meskipun pada akhirnya kita akan menggunakan tools atau bahasa pemrograman untuk berinteraksi melalui HTTP, ada baiknya kita memahami bagaimana sebuah HTTP Message itu dibentuk.
+![HTTP](img/httpmsgstructure2.png)
+
+> `request` - permintaan dari *client* ke *server*, `response` - balasan dari *server* ke *client*
+
+Dapat dilihat pada gambar di atas, pada `request` dan `response` dari HTTP terdapat struktur yang sama yaitu: `start-line`, `HTTP Headers`, `empty-line/baris kosong`, dan `body`.
+
+### Start Line
+Pada bagian start-line terdapat tiga bagian yaitu:
+- **HTTP Method** (dibahas pada bagian selanjutnya), sebuah kata kerja seperti GET, PUT, POST, atau kata benda seperti HEAD, atau OPTIONS, yang mendeskripsikan action apa yang perlu dilakukan. Misal, GET menandakan bahwa sebuah *resource* harus diambil, atau POST memandakan bahwa sebuah *resource* harus ditambahkan ke server.
+- **Request Target**, biasanya sebuah URL, path absolute, port, atau domain.
+- **HTTP Version**, yang menandakan versi HTTP yang digunakan.
+
+<div>
+  <img src="img/http_request.png" alt="request"/>
+  <div align="center"><b>Contoh request HTTP</b></div>
+</div>
+
+<div>
+  <img src="img/http_response.png" alt="response"/>
+  <div align="center"><b>Contoh response HTTP</b></div>
+</div>
+
+### Request Headers
+
+Header HTTP memungkinkan client dan server menyampaikan informasi tambahan dari `request` atau `response` HTTP. Header terdiri dari nama case-insensitive diikuti oleh titik dua (:), kemudian dengan nilainya. Spasi sebelum nilai diabaikan.
+
+> Jika kita melihat headers dengan prefix nama `X-`, berarti header tersebut merupakan header *custom* (vendor-specific), contoh `X-Archived-At`, `X-Forwarded-For`, dsb.
+
+![headers](img/http_request_headers3.png)
+
+- **General Header**: Header HTTP yang dapat digunakan dalam `request` dan `response`, tidak berhubungan dengan konten/body yang dikirimkan.
+- **Request Header**: Digunakan dalam `request` untuk memberikan informasi tentang konteks permintaan, sehingga server dapat menyesuaikan `response`.
+> Misalnya, header `Accept-*` menunjukkan format respons yang diizinkan. Header lain dapat digunakan untuk memberikan kredensial atau authentication, atau untuk mendapatkan informasi tentang *user-agent* atau perujuk, dll.
+
+- **Representation Header**: Header HTTP yang menjelaskan representasi spesifik dari `resource` yang dikirim pada `body` HTTP. Contoh dari representation header yaitu: `Content-Type`, `Content-Encoding`, `Content-Language`, dan `Content-Location`.
+
+### Body
+
+Bagian terakhir adalah `body`. Tidak semua `request`/`response` memilikinya: `request` yang mengambil `resource`, seperti `GET`, `HEAD`, `DELETE`, atau `OPTIONS`, biasanya tidak memerlukannya. Beberapa request yang mengirim data ke server untuk seperti `POST`.
+
+Body biasanya dikirimkan dalam bentuk `plain-text` (json, xml, html), `binary`, atau `multipart`.
+
+![body](img/body.png)
+
+Body adalah bagian terakhir dari HTTP Message.
+
 
 ## HTTP Methods
 Dalam protokol HTTP, ada berbagai **method** yang dapat digunakan untuk meminta data (request) ke server. Setiap **method** ini sudah memliki standarisasi kegunaanya, misalnya seperti `GET` untuk meminta data, dan `POST` untuk mengirimkan data. Tetapi, hal ini bukan menjadi aturan yang harus diikuti, dalam artian kita dapat mengirimkan data menggunakan `GET`, hal tadi hanyalah sebuah standar spesifikasi untuk menyamakan struktur dari Web Service atau API yang kita ingin buat.
@@ -442,72 +503,7 @@ Ada lima kelas yang ditentukan oleh standar:
 
 Untuk informasi lebih detail dapat dilihat di [HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
-## Routes/Endpoints
-TODO
-
-
-
-
-# Install Postman
-TODO
-
-
-# Contoh Web Service
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dalam HTTP terdapat berbagai method yang dapat digunakan, contohnya:
-
-| HTTP Method | CRUD                  | Collection Resource (e.g. /users)                                                                       | Single Resouce (e.g. /users/123)                                                 |
-| --------    | ---                   | ---                                                                                                     | ---                                                                              |
-| POST        | Create                | 201 (Created), ‘Location’ header with link to /users/{id} containing new ID                             | Avoid using POST on a single resource                                            |
-| GET         | Read                  | 200 (OK), list of users. Use pagination, sorting, and filtering to navigate big lists                   | 200 (OK), single user. 404 (Not Found), if ID not found or invalid               |
-| PUT         | Update/Replace        | 405 (Method not allowed), unless you want to update every resource in the entire collection of resource | 200 (OK) or 204 (No Content). Use 404 (Not Found), if ID is not found or invalid |
-| PATCH       | Partial Update/Modify | 405 (Method not allowed), unless you want to modify the collection itself                               | 200 (OK) or 204 (No Content). Use 404 (Not Found), if ID is not found or invalid |
-| DELETE      | Delete                | 405 (Method not allowed), unless you want to delete the whole collection — use with caution             | 200 (OK). 404 (Not Found), if ID not found or invalid                            |
-
-[Sumber](https://restfulapi.net/http-methods/)
-
-Untuk list lebih lengkap mengenai framework dan protocol Web Service dapat dilihat di:
-- Framework https://en.wikipedia.org/wiki/List_of_web_service_frameworks
-- Protokol https://en.wikipedia.org/wiki/List_of_web_service_protocols
-
+-- TODO TILL BOTTOM
 # Menghubungkan dengan database (Web Service)
 
 Salah satu fitur dari Web Service ini yaitu dapat ditulis dari berbagai bahasa pemrograman, bahkan sudah banyak framework yang dapat digunakan untuk membuat Web Service.
