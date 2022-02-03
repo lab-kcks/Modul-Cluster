@@ -216,16 +216,18 @@ id = 0
 
 f = open("csv/jawaban.csv", "w")
 writer = csv.writer(f, doublequote=True, quoting=csv.QUOTE_ALL, lineterminator="\n")
-header = ["id", "id_siswa", "id_soal", "jawaban"]
+header = ["id", "id_siswa", "id_soal", "id_mapel", "jawaban"]
 writer.writerow(header)
 
 for idx_siswa in range(total_siswa):
     id_siswa = idx_siswa + 1
-    for idx_soal in range(total_soal):
-        id += 1
-        id_soal = idx_soal + 1
-        jawaban = fake.random_element(elements=config.pilihan_jawaban)
-        writer.writerow([id, id_siswa, id_soal, jawaban])
+    for idx_mapel in range(len(config.mata_pelajaran)) :
+        id_mapel = idx_mapel+1
+        for idx_soal in range(total_soal):
+            id += 1
+            id_soal = idx_soal + 1
+            jawaban = fake.random_element(elements=config.pilihan_jawaban)
+            writer.writerow([id, id_siswa, id_soal, id_mapel, jawaban])
 
 f.close()
 ```
@@ -245,11 +247,13 @@ Penjelasan :
 13. ```for idx_siswa in range(total_siswa):``` : fungsi loop untuk menjalankan program sebanyak total_siswa yang sudah dideklarasikan
 14. ```id += 1``` : melakukan increment variabel id
 15. ```id_siswa = idx_siswa + 1``` : id siswa yang akan dimasukkan ke dalam database sama degan nilai dari idx_siswa saat ini ditambah 1
-16. ```for idx_soal in range(total_soal):``` : melakukan loop sebanyak total_soal yang telah ditentukan sebelumnya (pada file config.py)
-17. ```id_soal = idx_soal + 1``` : id_soal yang akan dimasukkan ke dalam database adalah nilai idx_soal sekarang ditambah 1
-18. ```jawaban = fake.random_element(elements=config.pilihan_jawaban)``` : melakukan random data jawaban dengan elemen berupa pilihan_jawaban yang telah di deklarasikan pada file config.py
-19. ```writer.writerow([id, id_siswa, id_soal, jawaban])``` : mencetak id, id_siswa, id_soal, dan jawaban ke dalam file csv
-20. ```f.close()``` : menutup interaksi soal dengan file csv
+16. ```for idx_mapel in range(len(config.mata_pelajaran)) :``` : melakukan looping sebanyak panjang dari list mata_pelajaran yang sudah didefinisikan pada config
+17. ```id_mapel = idx_mapel+1``` : nilai id_mapel adalah idx_mapel ditambah 1
+18. ```for idx_soal in range(total_soal):``` : melakukan loop sebanyak total_soal yang telah ditentukan sebelumnya (pada file config.py)
+19. ```id_soal = idx_soal + 1``` : id_soal yang akan dimasukkan ke dalam database adalah nilai idx_soal sekarang ditambah 1
+20. ```jawaban = fake.random_element(elements=config.pilihan_jawaban)``` : melakukan random data jawaban dengan elemen berupa pilihan_jawaban yang telah di deklarasikan pada file config.py
+21. ```writer.writerow([id, id_siswa, id_soal, id_mapel, jawaban])``` : mencetak id, id_siswa, id_soal, id_mapel, dan jawaban ke dalam file csv
+22. ```f.close()``` : menutup interaksi soal dengan file csv
 
 <br><br>
 **generate-kota.py**
@@ -448,8 +452,19 @@ Table('Jawaban', metadata_obj,
     Column('id', Integer, primary_key=True),
     Column('id_siswa', Integer, ForeignKey("Siswa.id"), nullable=false),
     Column('id_soal', Integer, ForeignKey("Soal.id"), nullable=false),
+    Column('id_mapel', Integer, ForeignKey("Mata_Pelajaran.id"), nullable=false),
     Column('jawaban', String(1)),
 )
+
+"""
+Table('Result', metadata_obj,
+    Column('id', Integer, primary_key=True),
+    Column('id_siswa', Integer, ForeignKey("Siswa.id"), nullable=false),
+    Column('id_soal', Integer, ForeignKey("Soal.id"), nullable=false),
+    Column('id_mapel', Integer, ForeignKey("Mata_Pelajaran.id"), nullable=false),
+    Column('is_jawaban_benar', Boolean),
+)
+"""
 
 metadata_obj.create_all()
 ```
