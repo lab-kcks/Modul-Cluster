@@ -42,6 +42,7 @@ Table('Jawaban', metadata_obj,
     Column('id', Integer, primary_key=True),
     Column('id_siswa', Integer, ForeignKey("Siswa.id"), nullable=false),
     Column('id_soal', Integer, ForeignKey("Soal.id"), nullable=false),
+    Column('id_mapel', Integer, ForeignKey("Mata_Pelajaran.id"), nullable=false),
     Column('jawaban', String(1)),
 )
 
