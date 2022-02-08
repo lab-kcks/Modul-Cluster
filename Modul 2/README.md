@@ -7,8 +7,6 @@ Secara singkat, Web Service dapat didefinisikan sebagai berikut:
 - Client mengirimkan request ke server (service), dan service mengirimkan response ke client.
 - Kumpulan standar atau protokol untuk bertukar informasi antara dua perangkat atau aplikasi.
 
-https://www.cleo.com/blog/knowledge-base-web-services
-
 <img
 style="margin: 0 auto; width: 100%"
 src="img/web-service.jpg">
@@ -16,7 +14,6 @@ src="img/web-service.jpg">
 Gambar diatas menunjukkan bagaimana aplikasi-aplikasi yang ditulis dengan berbagai bahasa dapat **saling berinteraksi** antar satu sama lain ataupun dengan Web Service itu sendiri. Interaksi ini dapat berupa permintaan data, mengirimkan notifikasi, atau mengeksekusi instruksi dari aplikasi tersebut.
 
 # Jenis
-https://www.studytonight.com/rest-web-service/types-of-webservices
 ## XML-RPC (Remote Procedure Call)
 Protokol XML paling dasar untuk bertukar data antara berbagai perangkat di jaringan. XML-RPC menggunakan HTTP untuk dapat dengan cepat dan mudah berkomunikasi  dari klien ke server dan sebaliknya. Dalam XML-RPC interaksi ini dilakukan dengan mengirim **dokumen xml** yang didalamnya berisi **metode dan parameter dari permintaan yang diinginkan**.
 
@@ -253,9 +250,11 @@ Dalam path salah, GET umumnya mengembalikan `404 (Not Found)` atau `400 (Bad Req
 Menurut desain spesifikasi HTTP, permintaan GET (bersama dengan HEAD) hanya digunakan untuk membaca data dan tidak mengubahnya. Jangan mengekspos operasi yang tidak aman melalui GET seperti password dan data sensitif lainnya.
 
 Contoh:  
+```
 GET http://www.example.com/customers/12345  
 GET http://www.example.com/customers/12345/orders  
 GET http://www.example.com/buckets/sample  
+```
 
 ### HEAD
 Metode HEAD meminta respons yang identik dengan permintaan GET, tetapi tanpa isi respons (response body).
@@ -265,8 +264,10 @@ Metode POST mengirimkan entitas ke *resource* yang ditentukan, sering kali menye
 Pada pembuatan yang berhasil, server akan mengirimkan status HTTP 201(Created), atau header Lokasi dengan link ke resource yang baru dibuat dengan status HTTP 201. Misal kita POST /user, maka dapat me-return /user/1, dimana user identifier `1` adalah user yang baru saja kita buat.
 
 Contoh:  
+```
 POST http://www.example.com/customers  
 POST http://www.example.com/customers/12345/orders  
+```
 
 ### PUT
 Metode PUT menggantikan semua representasi saat ini dari *resource* target dengan payload permintaan. PUT paling sering digunakan untuk melakukan **update**, mengirimkan PUT ke URI yang dikenal dengan `request body` yang berisi data resource asli yang sudah di modifikasi.
@@ -293,9 +294,11 @@ Lakukan PUT ke `/user/1` dengan `request body`:
 Akan mengganti user dengan id `1` dengan data baru yang dikirimkan.
 
 Contoh:  
+```
 PUT http://www.example.com/customers/12345  
 PUT http://www.example.com/customers/12345/orders/98765  
 PUT http://www.example.com/buckets/secret_stuff  
+```
 
 ### PATCH
 Metode PATCH menerapkan modifikasi parsial pada *resource*. Permintaan PATCH hanya perlu berisi perubahan pada `resource`, bukan `resource` yang lengkap.
@@ -320,9 +323,11 @@ Lakukan PUT ke `/user/1` dengan `request body`:
 Akan **mengubah nama dan usia** user dengan id `1` dengan data baru yang dikirimkan, tanpa mengubah data lain yang tidak menjadi `request body`.
 
 Contoh:  
+```
 PATCH http://www.example.com/customers/12345  
 PATCH http://www.example.com/customers/12345/orders/98765  
 PATCH http://www.example.com/buckets/secret_stuff  
+```
 
 ### DELETE
 Metode DELETE menghapus *resource* yang ditentukan.
@@ -330,9 +335,11 @@ Metode DELETE menghapus *resource* yang ditentukan.
 Pada proses DELETE yang berhasil, server dapat mengirimkan status HTTP 200 (OK) dengan `response body` yang berisi data yang dihapus (tetapi sering dianggap membuang-buang bandwith), atau status HTTP 204 (No Content) tanpa `response body` untuk menandakan data telah berhasil dihapus.
 
 Contoh:  
+```
 DELETE http://www.example.com/customers/12345  
 DELETE http://www.example.com/customers/12345/orders  
 DELETE http://www.example.com/bucket/sample  
+```
 
 ### Dengan operasi CRUD
 Berikut adalah tabel method yang paling umum digunakan beserta *use-case* dan response nya nya:
@@ -506,52 +513,79 @@ Ada lima kelas yang ditentukan oleh standar:
 Untuk informasi lebih detail dapat dilihat di [HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
 # Instalasi Postman
-1.  <span class="c9">Install</span> <span class="c0">aplikasi native postman pada browser.</span>
+1. Download installer Postman di [https://www.getpostman.com/](https://www.getpostman.com/)
 
 <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 601.70px; height: 309.33px;">![](img/image3.png)</span>
 
+2. Install Postman di komputer Anda
 <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 601.70px; height: 342.67px;">![](img/image1.png)</span>
 
-<span class="c5 c6 c7"></span>
 
-2.  <span class="c5">Setelah ter-</span><span class="c3">install</span><span class="c5">, anda dapat memilih untuk log-in menggunakan</span> <span class="c3">account</span><span class="c5">atau langsung menggunakan aplikasi tanpa membuat</span> <span class="c3 c6">account.</span>
+3. Setelah instalasi selesai, kita dapat memilih untuk log-in menggunakan account atau langsung menggunakan aplikasi tanpa perlu membuat account.
 
 <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 601.70px; height: 372.00px;">![](img/image4.png)</span>
 
-<span class="c5 c6 c7"></span>
-
-3.  <span class="c5">Buat akun dengan mengisi data-data yang diperlukan, atau</span> <span class="c3">log-in</span><span class="c5">menggunakan</span> <span class="c3">google account</span><span class="c5 c6 c7">.</span>
-
-<span class="c5 c6 c7"></span>
-
-<span class="c0"></span>
-
-<span class="c0"></span>
+4. Jika ingin membuat akun silahkan isi data-data dan tipe akun yang ingin dibuat.
 
 <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 601.70px; height: 496.00px;">![](img/image2.png)</span>
 
-<span class="c0"></span>
-
-4.  <span class="c0">Anda telah berhasil masuk ke aplikasi postman dan dapat segera menggunakannya.</span>
+5.  Postman sudah selesai di install.
 
 <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 601.70px; height: 320.00px;">![](img/image5.png)</span>
 
-<span class="c0"></span>
 
-
-<!--
 # Web Service Menggunakan python
 
+Pada modul ini, kita akan membuat Web Service sederhana menggunakan python dan flask. Web Service ini menggunakan sistem REST API (dengan bantuan flask-restful).
 
+> Pastikan sudah terinstall python version 3.9 atau lebih tinggi.
+> Pastikan sudah terinstall mysql dan sudah berfungsi (xampp/wamp/service).
 
+## Install Dependencies
 
+**Install virtualenv**
 
+```
+$ pip install virtualenv
+$ virtualenv venv
+```
 
+> tulis tanpa tanda dollar, `$` hanya menandakan bahwa perintah tersebut dijalankan di terminal.
 
+<br>
 
+**Masuk ke virtualenv**
 
+```
+$ venv\Scripts\activate
+```
 
+**Buat file `requirements.txt` lalu isikan dengan**
 
+```
+aniso8601==9.0.1
+click==8.0.3
+Flask==2.0.2
+Flask-RESTful==0.3.9
+Flask-SQLAlchemy==2.5.1
+greenlet==1.1.2
+itsdangerous==2.0.1
+Jinja2==3.0.3
+MarkupSafe==2.0.1
+mysqlclient==2.1.0
+pytz==2021.3
+six==1.16.0
+SQLAlchemy==1.4.31
+Werkzeug==2.0.2
+```
+
+**Install requirements**
+
+`$ pip install -r requirements.txt`
+
+**Buat file `server.py`**
+
+<!--
 
 # Menghubungkan dengan database (Web Service)
 
@@ -586,11 +620,11 @@ Pada database data tersebut juga sudah tersimpan:
 
 
 # Sumber:
-https://en.wikipedia.org/wiki/Remote_procedure_call
-https://en.wikipedia.org/wiki/XML-RPC
-https://www.dicoding.com/blog/apa-itu-web-service/
-https://www.guru99.com/web-service-architecture.html
-https://www.javatpoint.com/what-is-web-service
-https://en.wikipedia.org/wiki/Web_service
-https://www.cleo.com/blog/knowledge-base-web-services
-https://www.mysqltutorial.org/mysql-sample-database.aspx
+https://en.wikipedia.org/wiki/Remote_procedure_call  
+https://en.wikipedia.org/wiki/XML-RPC  
+https://www.dicoding.com/blog/apa-itu-web-service/  
+https://www.guru99.com/web-service-architecture.html  
+https://www.javatpoint.com/what-is-web-service  
+https://en.wikipedia.org/wiki/Web_service  
+https://www.cleo.com/blog/knowledge-base-web-services  
+https://www.mysqltutorial.org/mysql-sample-database.aspx  
