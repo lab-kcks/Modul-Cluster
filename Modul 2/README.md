@@ -11,7 +11,7 @@ https://www.cleo.com/blog/knowledge-base-web-services
 
 <img
 style="margin: 0 auto; width: 100%"
-src="https://static.javatpoint.com/webservicepages/images/web-services.png">
+src="https://static.javatpoint.com/webservicepages/img/web-services.png">
 
 Gambar diatas menunjukkan bagaimana aplikasi-aplikasi yang ditulis dengan berbagai bahasa dapat **saling berinteraksi** antar satu sama lain ataupun dengan Web Service itu sendiri. Interaksi ini dapat berupa permintaan data, mengirimkan notifikasi, atau mengeksekusi instruksi dari aplikasi tersebut.
 
@@ -503,7 +503,54 @@ Ada lima kelas yang ditentukan oleh standar:
 
 Untuk informasi lebih detail dapat dilihat di [HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
--- TODO TILL BOTTOM
+# Instalasi Postman
+1.  <span class="c9">Install</span> <span class="c0">aplikasi native postman pada browser.</span>
+
+<span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 601.70px; height: 309.33px;">![](img/image3.png)</span>
+
+<span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 601.70px; height: 342.67px;">![](img/image1.png)</span>
+
+<span class="c5 c6 c7"></span>
+
+2.  <span class="c5">Setelah ter-</span><span class="c3">install</span><span class="c5">, anda dapat memilih untuk log-in menggunakan</span> <span class="c3">account</span><span class="c5">atau langsung menggunakan aplikasi tanpa membuat</span> <span class="c3 c6">account.</span>
+
+<span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 601.70px; height: 372.00px;">![](img/image4.png)</span>
+
+<span class="c5 c6 c7"></span>
+
+3.  <span class="c5">Buat akun dengan mengisi data-data yang diperlukan, atau</span> <span class="c3">log-in</span><span class="c5">menggunakan</span> <span class="c3">google account</span><span class="c5 c6 c7">.</span>
+
+<span class="c5 c6 c7"></span>
+
+<span class="c0"></span>
+
+<span class="c0"></span>
+
+<span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 601.70px; height: 496.00px;">![](img/image2.png)</span>
+
+<span class="c0"></span>
+
+4.  <span class="c0">Anda telah berhasil masuk ke aplikasi postman dan dapat segera menggunakannya.</span>
+
+<span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 601.70px; height: 320.00px;">![](img/image5.png)</span>
+
+<span class="c0"></span>
+
+
+# Web Service Menggunakan python
+
+
+
+
+
+
+
+
+
+
+
+
+-- TODO --
 # Menghubungkan dengan database (Web Service)
 
 Salah satu fitur dari Web Service ini yaitu dapat ditulis dari berbagai bahasa pemrograman, bahkan sudah banyak framework yang dapat digunakan untuk membuat Web Service.
@@ -513,23 +560,23 @@ Pada contoh kali ini akan digunakan contoh REST API yang berisi list bahasa pemr
 Untuk mempermudah interaksi dengan REST API ini kita gunakan [Postman](https://www.getpostman.com/).
 
 Berikut adalah data dalam database:
-![database](https://gcdn.pbrd.co/images/g1YytRBADMAv.png?o=1)
+![database](https://gcdn.pbrd.co/img/g1YytRBADMAv.png?o=1)
 
 Kita dapat menguji koneksi dengan service dengan cara melakukan `GET` request ke endpoint `/programming-languages`. Server akan mengirimkan response berupa data dalam format `JSON`:
-![response-get](https://gcdn.pbrd.co/images/cCFRGVJ9Vc9W.png?o=1)
+![response-get](https://gcdn.pbrd.co/img/cCFRGVJ9Vc9W.png?o=1)
 
 # Mengirimkan dan menerima data dari database
 
 Selain dapat meminta data dari database, kita juga dapat mengirimkan data ke database. Data dikirimkan dalam format `JSON` umumnya menggunakan method `POST`.
 
 Contoh membuat data baru dengan entry bahasa pemrograman `dart` beserta ranking-nya.
-![create](https://gcdn.pbrd.co/images/KbIAj7obP9rk.png?o=1)
+![create](https://gcdn.pbrd.co/img/KbIAj7obP9rk.png?o=1)
 
 Server akan menerima data dari client dan menyimpannya di database dan mengirimkan response kembali:
-![response-create](https://gcdn.pbrd.co/images/9YwKULMycOhN.png?o=1)
+![response-create](https://gcdn.pbrd.co/img/9YwKULMycOhN.png?o=1)
 
 Pada database data tersebut juga sudah tersimpan:
-![database-create](https://gcdn.pbrd.co/images/dztqKvC8UTmd.png?o=1)
+![database-create](https://gcdn.pbrd.co/img/dztqKvC8UTmd.png?o=1)
 
 # Praktik Sederhana hasil Query upload data/download data otomatis
 
