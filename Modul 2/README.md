@@ -11,7 +11,7 @@ https://www.cleo.com/blog/knowledge-base-web-services
 
 <img
 style="margin: 0 auto; width: 100%"
-src="https://static.javatpoint.com/webservicepages/img/web-services.png">
+src="img/web-service.jpg">
 
 Gambar diatas menunjukkan bagaimana aplikasi-aplikasi yang ditulis dengan berbagai bahasa dapat **saling berinteraksi** antar satu sama lain ataupun dengan Web Service itu sendiri. Interaksi ini dapat berupa permintaan data, mengirimkan notifikasi, atau mengeksekusi instruksi dari aplikasi tersebut.
 
@@ -185,6 +185,8 @@ Salah satu cara Web Service berinteraksi yaitu melalui protokol HTTP/HTTPS, Ada 
   - server melakukan operasi yang diminta pada request
   - server mengirimkan response ke client
   - client menerima response dan melakukan parsing response
+
+Dapat dilihat pada flow diatas sebenarnya alur dari proses Web Service mirip dengan alur proses Website, perbedannya hanya pada permintaan dalam website, ada peran browser untuk me-render halaman yang didapatkan.
 
 ## Struktur HTTP
 
@@ -537,6 +539,7 @@ Untuk informasi lebih detail dapat dilihat di [HTTP Status Code](https://en.wiki
 <span class="c0"></span>
 
 
+<!--
 # Web Service Menggunakan python
 
 
@@ -550,7 +553,6 @@ Untuk informasi lebih detail dapat dilihat di [HTTP Status Code](https://en.wiki
 
 
 
--- TODO --
 # Menghubungkan dengan database (Web Service)
 
 Salah satu fitur dari Web Service ini yaitu dapat ditulis dari berbagai bahasa pemrograman, bahkan sudah banyak framework yang dapat digunakan untuk membuat Web Service.
@@ -579,6 +581,8 @@ Pada database data tersebut juga sudah tersimpan:
 ![database-create](https://gcdn.pbrd.co/img/dztqKvC8UTmd.png?o=1)
 
 # Praktik Sederhana hasil Query upload data/download data otomatis
+
+-->
 
 
 # Sumber:
