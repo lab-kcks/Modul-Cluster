@@ -540,6 +540,7 @@ Pada modul ini, kita akan membuat Web Service sederhana menggunakan python dan f
 
 > Pastikan sudah terinstall python version 3.9 atau lebih tinggi.
 > Pastikan sudah terinstall mysql dan sudah berfungsi (xampp/wamp/service).
+> Pastikan sudah melakukan import database dari modul sebelumnya.
 
 ## Install Dependencies
 
@@ -554,7 +555,7 @@ $ virtualenv venv
 
 <br>
 
-**Masuk ke virtualenv**
+**Masuk ke virtualenv (aktivasi virtual environment)**
 
 ```
 $ venv\Scripts\activate
@@ -583,7 +584,46 @@ Werkzeug==2.0.2
 
 `$ pip install -r requirements.txt`
 
+## Import Module dan Initial Setup
 **Buat file `server.py`**
+Silahkan buat file `server.py` dengan setelah masuk ke virtual environment.
+
+**Import Module**
+```python
+from flask import Flask
+from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
+from flask_sqlalchemy import SQLAlchemy
+```
+
+`Flask` adalah library yang kita gunakan untuk membuat aplikasi web menggunakan python.
+`flask_resful` adalah 'extension' dari `Flask` yang kita gunakan untuk membuat API menggunakan RESTful API.
+`flask_sqlalchemy` adalah 'extension' dari `Flask` yang kita gunakan untuk membuat database menggunakan SQLAlchemy (library serbaguna untuk melakukan operasi-operasi dengan database menggunakan python).
+
+**Inisiasi**
+```python
+app = Flask(__name__)
+api = Api(app)
+
+# Format: mysql://[username]:[password]@[host]:[port]/[database]'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://m42nk@localhost/CBT_JATIM'
+
+db = SQLAlchemy(app)
+```
+
+`app` adalah instance dari `Flask` yang dapat kita gunakan untuk melakukan konfigurasi aplikasi dan untuk menjalankan aplikasi itu sendiri (line paling bawah pada source code).
+
+`api` adalah instance yang akan kita gunakan untuk membuat decorator dari `endpoint`/`path` yang digunakan nanti serta bisa juga menentukan methods pada `path` tersebut.
+
+`db` adalah instance untuk melakukan operasi-operasi database.
+
+**Model Tabel**
+```python
+class Mata_Pelajaran(db.Model):
+    __tablename__ = "Mata_Pelajaran"
+
+    id = db.Column(db.Integer, primary_key=True)
+    nama = db.Column(db.String(100), nullable=False)
+```
 
 <!--
 
