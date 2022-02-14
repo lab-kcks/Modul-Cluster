@@ -210,7 +210,7 @@ import json
 
 fake = Faker()
 
-total_siswa = config.total_siswa
+total_siswa = config.total_siswa*38
 total_soal = config.total_soal
 id = 0
 
@@ -237,7 +237,7 @@ Penjelasan :
 3. ```import config``` : mengimport file config.py
 4. ```import json``` : mengimport library json yang memungkinkan kita untuk mengolah data dengan format json
 5. ```fake = Faker()``` : mendeklarasikan variabel fake yang berisi fungsi Faker()
-6. ```total_siswa = config.total_siswa``` : mendeklarasikan variabel total_siswa yang nilainya sama dengan total_siswa yang sudah dideklarasikan pada file config.py
+6. ```total_siswa = config.total_siswa*38``` : mendeklarasikan variabel total_siswa yang nilainya sama dengan total_siswa yang sudah dideklarasikan pada file config.py dikali dengan 38 (sesuai jumlah kota)
 7. ```total_soal = config.total_soal``` : mendeklarasikan variabel total_soal yang nilainya sama dengan total_soal yang sudah dideklarasikan pada file config.py
 8. ```id = 0``` : mendeklarasikan variabel id yang nantinya digunakan untuk mengisi kolom id sebagai primary key
 9. ```f = open("csv/jawaban.csv", "w")``` : membuka/membuat(jika belum ada) file jawaban.csv yang berada di dalam folder csv dengan metode write("w")
