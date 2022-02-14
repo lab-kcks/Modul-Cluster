@@ -1,6 +1,6 @@
 panjang_nrp = 14
-total_siswa = 20
-total_soal = 30
+total_siswa = 13158
+total_soal = 40
 pilihan_jawaban = ["A", "B", "C", "D"]
 
 # Jumlah 38 kota

@@ -5,7 +5,7 @@ import json
 
 fake = Faker()
 
-total_siswa = config.total_siswa
+total_siswa = config.total_siswa*38
 total_soal = config.total_soal
 id = 0
 
