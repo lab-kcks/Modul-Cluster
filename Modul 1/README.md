@@ -545,7 +545,7 @@ Penjelasan :
 - ```ON siswa.id_kota=kota.id``` : menggabungkan tabel siswa pada kolom id_kota dan tabel kota pada kolom id
 - ```WHERE jawaban.jawaban = soal.jawaban_benar``` : Hanya lakukan select pada data yang memiliki nilai yang sama pada tabel jawaban kolom jawaban dan tabel soal kolom jawaban_benar
 - ```GROUP BY jawaban.id_siswa, soal.id_mapel``` : grouping data berdasarkan tabel jawaban kolom id_siswa dan tabel soal kolom id_mapel
-7. Maka kita akan mendapatkan jumlah jawaban yang benar dari tiap siswa<br><br><img src= "img/27.JPG" style="height:300px,width:auto"><br><br>
+3. Maka kita akan mendapatkan jumlah jawaban yang benar dari tiap siswa<br><br><img src= "img/27.JPG" style="height:300px,width:auto"><br><br>
 
 ## Referensi
 https://idcloudhost.com/kamus-hosting/query/ <br>
