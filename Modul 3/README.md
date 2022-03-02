@@ -153,8 +153,8 @@ Karena kita akan menggunakan SQL maka kira harus menginstall MariaDB terlebih da
 
 1. Mulai dari titik ini hingga selanjutnya, disarankan untuk mengakses raspberry sebagai root dengan command ```sudo -i```
 2. ```apt-get update``` : digunakan untuk mengupdate package pada raspberry<br><br><img src= "img/16.png"><br><br>
-3. ```apt-get install mariadb-server``` : digunakan untuk<br><br><img src= "img/17.png"><br><br>
-4. ```mysql_secure_installation``` : digunakan untuk<br><br><img src= "img/18.png"><br><br>
+3. ```apt-get install mariadb-server``` : digunakan untuk menginstall mariadb<br><br><img src= "img/17.png"><br><br>
+4. ```mysql_secure_installation``` : digunakan untuk melakukan konfigurasi instalasi mysql<br><br><img src= "img/18.png"><br><br>
 5. ```mariadb --version``` : digunakan untuk memeriksa apakah mariadb sudah terinstall<br><br><img src= "img/19.png"><br><br>
 6. ```cd /var/lib/mysql``` : untuk masuk ke folder di mana mysql diinstall<br><br><img src= "img/20.png"><br><br>
 7. ```ls``` : melakukan listing file apa saja yang ada dalam folder<br><br><img src= "img/21.png"><br><br>
