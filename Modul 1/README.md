@@ -480,7 +480,7 @@ Program ini bertujuan untuk membuat tabel pada database dengan penjelasan sebaga
 9. ```Column('id', Integer, primary_key=True),``` : membuat kolom id dengan tipe integer dan dijadikan sebagai primary key
 10. ```Column('nama', String(255)),```  : membuat kolom nama dengan tipe string dan panjang string adalah 255
 11. ```Column('id_kota', Integer, ForeignKey("Kota.id"), nullable=false),``` : membuat kolom id_kota dengan tipe integer, dengan foreign key pada kolom id di tabel Kota, dan nilainya tidak dapat null
-12. Untuk baris lainnya kurang lebih sama dengan penjelasan nomor 8-12
+12. Untuk baris lainnya kurang lebih sama dengan penjelasan nomor 8-11
 
 <br><br>
 **generate-all.py**
