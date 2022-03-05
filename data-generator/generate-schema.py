@@ -4,7 +4,7 @@ Opsi lain untuk bikin schema sql
 
 from sqlalchemy import *
 
-db_username = 'm42nk'
+db_username = 'root'
 db_host = 'localhost'
 db_name = 'CBT_JATIM'
 
