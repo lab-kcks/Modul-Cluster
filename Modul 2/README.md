@@ -1,3 +1,39 @@
+# Outline
+
+- [Outline](#outline)
+- [Tujuan](#tujuan)
+- [Pengenalan Web Service](#pengenalan-web-service)
+- [Jenis](#jenis)
+  - [XML-RPC (Remote Procedure Call)](#xml-rpc-remote-procedure-call)
+    - [Tag tipe data (data-type) dalam XML-RPC](#tag-tipe-data-data-type-dalam-xml-rpc)
+    - [SOAP (Simple Object Access Protocol)](#soap-simple-object-access-protocol)
+    - [REST (Representational State Transfer)](#rest-representational-state-transfer)
+- [Bagaimana Web Service Bekerja](#bagaimana-web-service-bekerja)
+  - [Alur Web Service](#alur-web-service)
+  - [Struktur HTTP](#struktur-http)
+    - [Start Line](#start-line)
+    - [Request Headers](#request-headers)
+    - [Body](#body)
+  - [HTTP Methods](#http-methods)
+    - [GET](#get)
+    - [HEAD](#head)
+    - [POST](#post)
+    - [PUT](#put)
+    - [PATCH](#patch)
+    - [DELETE](#delete)
+    - [Dengan operasi CRUD](#dengan-operasi-crud)
+    - [Method Lain](#method-lain)
+  - [HTTP Status Code](#http-status-code)
+- [Instalasi Postman](#instalasi-postman)
+- [Web Service Menggunakan python](#web-service-menggunakan-python)
+  - [Install Dependencies](#install-dependencies)
+  - [Import Module dan Initial Setup](#import-module-dan-initial-setup)
+- [Latihan](#latihan)
+- [Referensi](#referensi)
+
+# Tujuan
+Tujuan dibuatnya modul ini adalah untuk memperkenalkan pembaca mengenai hal yang terkait dengan *Web Service*, dimulai dari jenis-jenis hingga pembuatan *Web Service* menggunakan bahasa pemrograman Python.
+
 # Pengenalan Web Service
 Web Service adalah sebuah aplikasi berbasis **client-server** atau **consumer-provider** yang dapat digunakan untuk menjembatani banyak aplikasi untuk saling **berkomunikasi** satu sama lain __tanpa dibatasi oleh bahasa pemrograman__ tertentu. Dalam Web Service, sebuah *teknologi web* seperti **HTTP** digunakan untuk mengirimkan file dengan format machine-readable seperti **XML** atau **JSON**.
 
@@ -9,7 +45,7 @@ Secara singkat, Web Service dapat didefinisikan sebagai berikut:
 
 <img
 style="margin: 0 auto; width: 100%"
-src="img/web-service.jpg">
+src="img/web-service.png">
 
 Gambar diatas menunjukkan bagaimana aplikasi-aplikasi yang ditulis dengan berbagai bahasa dapat **saling berinteraksi** antar satu sama lain ataupun dengan Web Service itu sendiri. Interaksi ini dapat berupa permintaan data, mengirimkan notifikasi, atau mengeksekusi instruksi dari aplikasi tersebut.
 
@@ -161,7 +197,7 @@ Hello world!
 Protokol layanan Web berbasis XML untuk bertukar data dan dokumen melalui HTTP atau SMTP (Simple Mail Transfer Protocol). Ini memungkinkan proses yang beroperasi pada sistem yang berbeda untuk berkomunikasi menggunakan XML.
 
 ### REST (Representational State Transfer)
-Menyediakan komunikasi dan konektivitas antara perangkat dan internet berbasis API. Sebagian besar layanan RESTful menggunakan HTTP sebagai protokol pendukungnya. Penejelasan lebih lanjut mengenai REST akan **dibahas di bagian berikutnya**.
+Menyediakan komunikasi dan konektivitas antara perangkat dan internet berbasis API. Sebagian besar layanan RESTful menggunakan HTTP sebagai protokol pendukungnya. Penejelasan lebih lanjut mengenai REST akan **dibahas di bagian [Bagaimana Web Service Bekerja](#bagaimana-web-service-bekerja)**.
 
 # Bagaimana Web Service Bekerja
 Salah satu cara Web Service berinteraksi yaitu melalui protokol HTTP/HTTPS, Ada satu atau sekumpulan komputer yang bertindak sebagai client yang akan mengirimkan permintaan (request) kepada server dengan method-method (**HTTP Methods**) yang ada dan server akan mengirimkan data kembali (response) kepada client diikuti dengan kode status (**HTTP Status Code**).
@@ -173,8 +209,8 @@ Salah satu cara Web Service berinteraksi yaitu melalui protokol HTTP/HTTPS, Ada 
   - browser mengirimkan request ke server dengan method `get`
   - server menerima request dan mengirimkan halaman yang diminta ke client
   - browser menerima response dari server
-  - browser menampilkan (me-render) halaman yang diterima dari server
-  - client melihat halaman yang sudah di-render
+  - browser menampilkan (*render*) halaman yang diterima dari server
+  - client melihat halaman yang sudah ditampilkan (*render*)
 
 -> flow webservice (client dapat berupa user ataupun aplikasi lain)
   - client mengirimkan request ke server
@@ -198,7 +234,7 @@ Dapat dilihat pada gambar di atas, pada `request` dan `response` dari HTTP terda
 
 ### Start Line
 Pada bagian start-line terdapat tiga bagian yaitu:
-- **HTTP Method** (dibahas pada bagian selanjutnya), sebuah kata kerja seperti GET, PUT, POST, atau kata benda seperti HEAD, atau OPTIONS, yang mendeskripsikan action apa yang perlu dilakukan. Misal, GET menandakan bahwa sebuah *resource* harus diambil, atau POST memandakan bahwa sebuah *resource* harus ditambahkan ke server.
+- **HTTP Method** (dibahas pada bagian [HTTP Method](#http-methods)), sebuah kata kerja seperti GET, PUT, POST, atau kata benda seperti HEAD, atau OPTIONS, yang mendeskripsikan action apa yang perlu dilakukan. Misal, GET menandakan bahwa sebuah *resource* harus diambil, atau POST memandakan bahwa sebuah *resource* harus ditambahkan ke server.
 - **Request Target**, biasanya sebuah URL, path absolute, port, atau domain.
 - **HTTP Version**, yang menandakan versi HTTP yang digunakan.
 
@@ -513,6 +549,10 @@ Ada lima kelas yang ditentukan oleh standar:
 Untuk informasi lebih detail dapat dilihat di [HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
 # Instalasi Postman
+Postman adalah sebuah HTTP Client, HTTP Client adalah sebuah program yang dapat digunakan untuk berinteraksi dengan sebuah web-service berbasis HTTP. Biasanya, postman juga menjadi *tools* yang digunakan oleh *developer* untuk melakukan testing dari sebuah *RESTful API* (API Berbasiskan REST - HTTP). Dalam modul ini nanti Postman akan digunakan untuk berinteraksi dengan web-service yang akan dibuat.
+
+Berikut adalah cara melakukan instalasi Postman:
+
 1. Download installer Postman di [https://www.getpostman.com/](https://www.getpostman.com/)
 
 <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 601.70px; height: 309.33px;">![](img/image3.png)</span>
@@ -625,6 +665,139 @@ class Mata_Pelajaran(db.Model):
     nama = db.Column(db.String(100), nullable=False)
 ```
 
+
+Kelas ini merupakan `schema` yang akan digunakan sebagai acuan oleh program yang dibuat untuk mengetahui kolom apa saja yang berada dalam sebuah tabel. Kita dapat memasukkan semua kolom atau hanya beberapa kolom yang akan digunakan pada program kita.
+
+https://docs.sqlalchemy.org/en/14/orm/tutorial.html#create-a-schema
+
+
+**Field Type Declaration**
+```python
+mapel_fields = {
+    'id': fields.Integer,
+    'nama': fields.String,
+}
+
+...
+@marshal_with(mapel_fields)
+...
+```
+
+Di setiap kolom yang kita deklarasikan pada kelas, kita juga harus menentukan tipe data dari kolom tersebut. Pada contoh ini kolom `id` memiliki tipe data `integer` dan kolom `nama` memiliki tipe data `string`
+
+https://flask-restful.readthedocs.io/en/latest/api.html#flask_restful.marshal_with
+
+
+**Request Arguments**
+```python
+# untuk http method POST
+mapel_post_args = reqparse.RequestParser()
+mapel_post_args.add_argument("nama", type=str, required=True)
+
+# untuk http method PUT
+mapel_put_args = reqparse.RequestParser()
+mapel_put_args.add_argument("nama", type=str, required=True)
+```
+
+
+Kita harus mendeklarasikan parameter atau argument yang akan nanti kita kirimkan **pada request http**. Pada fungsi `.add_argument`, kita dapat memasukkan parameter lain seperti tipe data, `required`, `case_sensitive`, `trim`, dan lain lain. Pada contoh ini kita akan mengirimkan data dengan key `nama`, memiliki tipe `string`, dan merupakan data yang dibutuhkan di setiap request (ditandai dengan `required`).
+
+https://flask-restful.readthedocs.io/en/latest/api.html#module-reqparse
+
+
+**Resource Class**
+```python
+@api.resource('/mata-pelajaran/', '/mata-pelajaran/<int:mapel_id>')
+class Mata_Pelajaran_Resource(Resource):
+    @marshal_with(mapel_fields)
+```
+Resource merupakan representasi dari sumber data yang kita miliki.
+
+https://flask-restful.readthedocs.io/en/latest/api.html#flask_restful.Resource
+
+
+**Api Resource Decorator**
+```python
+@api.resource('/mata-pelajaran/', '/mata-pelajaran/<int:mapel_id>')
+```
+
+Decorator (ditandai dengan awalan `@`) ini digunakan untuk mendeklarasikan endpoint apa saja yang dapat digunakan untuk mengakses `Resource` ini. 
+
+https://flask-restful.readthedocs.io/en/latest/api.html#flask_restful.Api.resource
+
+**Resource Methods**
+Dalam sebuah `Resource` class, kita dapat menambahkan method (function didalam class) seperti `get`, `post`, `put`, dan `delete`.
+
+```python
+def get(self, mapel_id=None):
+    # memeriksa apakah `mapel_id` ada (dideklarasikan pada resource decorator)
+    # jika tidak ada, maka lakukan .query.all()
+    if not mapel_id:
+        return Mata_Pelajaran.query.all()
+
+    # jika ada maka lakukan query dengan filter `id=mapel_id` dan ambil hasil pertama.
+    result = Mata_Pelajaran.query.filter_by(id=mapel_id).first()
+
+    # jika id tidak ditemukan dalam database maka kirimkan error 404 dengan message
+    if not result:
+        abort(404, message=f"Mapel dengan ID {mapel_id} tidak ditemukan")
+
+    # jika ditemukan maka kirimkan result dengan status code 200 (default)
+    return result
+```
+
+```python
+def post(self, mapel_id=None):
+    # memeriksa apakah `mapel_id` ada (dideklarasikan pada resource decorator)
+    if mapel_id:
+        abort(400, message="Bad Request")
+
+    # mengambil argument yang akan digunakan, apabila tidak sesuai akan mengirimkan error
+    args = mapel_post_args.parse_args()
+
+    # melakukan inisiasi / membuat data `Mata_Pelajaran` baru dengan data `nama=args['nama'] (diambil dari data dalam request)
+    result = Mata_Pelajaran(nama=args['nama'])
+
+    # melakukan penambahan data pada instance `db` kita
+    db.session.add(result)
+    
+    # menerapkan perubahan pada session kita kedalam database asli
+    db.session.commit()
+    
+    # mengirimkan data yang baru saja dibuat, diikuti oleh status code 201
+    return result, 201
+```
+
+
+`.all()` akan mengirimkan array berisi semua data dengan struktur yang sudah ditentukan pada `mapel_fields`.
+
+`.first()` akan mengirimkan data **pertama** dengan struktur yang sudah ditentukan pada `mapel_fields`.
+
+`abort()` merupakan fungsi yang digunakan untuk mengakhiri pemrosesan request dan mengirimkan `HTTP Status Code` di argumen pertama nya, dan `message` di argumen kedua nya, `message` ini bersifat opsional.
+
+https://docs.sqlalchemy.org/en/14/orm/query.html
+
+**Run Server**
+
+```python
+if __name__ == "__main__":
+    app.run(port=5000, debug=True)
+```
+
+Merupakan bagian terakhir dalam program kita (file `server.py`), disini kita menentukan port yang digunakan oleh program kita, dan attribut lain seperti `debug`.
+Attribut `debug` ini digunakan untuk melakukan refresh program server secara otomatis ketika terjadi perubahan pada file `server.py`.
+
+
+# Latihan
+Buatlah endpoint untuk melakukan query pada tabel `Siswa`, Operasi yang harus dilakukan adalah:
+1. `get` untuk mendapatkan semua siswa.  
+2. `get` untuk mendapatkan satu siswa dengan `id` tertentu.  
+3. `get` untuk mendapatkan siswa dengan `id_kota` tertentu.  
+4. `post` untuk membuat siswa baru.  
+5. `put/patch` untuk mengubah nama siswa.  
+6. `delete` untuk menghapus salah satu siswa dengan `id` tertentu.  
+
+
 <!--
 
 # Menghubungkan dengan database (Web Service)
@@ -659,7 +832,7 @@ Pada database data tersebut juga sudah tersimpan:
 -->
 
 
-# Sumber:
+# Referensi
 https://en.wikipedia.org/wiki/Remote_procedure_call  
 https://en.wikipedia.org/wiki/XML-RPC  
 https://www.dicoding.com/blog/apa-itu-web-service/  
