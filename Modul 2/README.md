@@ -196,6 +196,45 @@ Hello world!
 ### SOAP (Simple Object Access Protocol)
 Protokol layanan Web berbasis XML untuk bertukar data dan dokumen melalui HTTP atau SMTP (Simple Mail Transfer Protocol). Ini memungkinkan proses yang beroperasi pada sistem yang berbeda untuk berkomunikasi menggunakan XML.
 
+Berikut adalah contoh `request` menggunakan SOAP:
+```xml
+POST /Quotation HTTP/1.0
+Host: www.xyz.org
+Content-Type: text/xml; charset = utf-8
+Content-Length: nnn
+
+<?xml version = "1.0"?>
+<SOAP-ENV:Envelope
+   xmlns:SOAP-ENV = "http://www.w3.org/2001/12/soap-envelope"
+   SOAP-ENV:encodingStyle = "http://www.w3.org/2001/12/soap-encoding">
+
+   <SOAP-ENV:Body xmlns:m = "http://www.xyz.org/quotations">
+      <m:GetQuotation>
+         <m:QuotationsName>MiscroSoft</m:QuotationsName>
+      </m:GetQuotation>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+```
+
+Berikut adalah contoh `response` dari SOAP:
+```xml
+HTTP/1.0 200 OK
+Content-Type: text/xml; charset = utf-8
+Content-Length: nnn
+
+<?xml version = "1.0"?>
+<SOAP-ENV:Envelope
+   xmlns:SOAP-ENV = "http://www.w3.org/2001/12/soap-envelope"
+   SOAP-ENV:encodingStyle = "http://www.w3.org/2001/12/soap-encoding">
+
+   <SOAP-ENV:Body xmlns:m = "http://www.xyz.org/quotation">
+      <m:GetQuotationResponse>
+         <m:Quotation>Here is the quotation</m:Quotation>
+      </m:GetQuotationResponse>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+```
+
 ### REST (Representational State Transfer)
 Menyediakan komunikasi dan konektivitas antara perangkat dan internet berbasis API. Sebagian besar layanan RESTful menggunakan HTTP sebagai protokol pendukungnya. Penejelasan lebih lanjut mengenai REST akan **dibahas di bagian [Bagaimana Web Service Bekerja](#bagaimana-web-service-bekerja)**.
 
