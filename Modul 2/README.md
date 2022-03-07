@@ -820,7 +820,7 @@ def post(self, mapel_id=None):
 
 https://docs.sqlalchemy.org/en/14/orm/query.html
 
-**Run Server**
+**Config Server**
 
 ```python
 if __name__ == "__main__":
@@ -829,6 +829,16 @@ if __name__ == "__main__":
 
 Merupakan bagian terakhir dalam program kita (file `server.py`), disini kita menentukan port yang digunakan oleh program kita, dan attribut lain seperti `debug`.
 Attribut `debug` ini digunakan untuk melakukan refresh program server secara otomatis ketika terjadi perubahan pada file `server.py`.
+
+**Run Server**
+1. Lakukan clone dari repository ini dengan `git clone https://github.com/Kota-Cerdas-dan-Keamanan-Siber/Modul-Cluster`
+2. Masuk ke folder `Modul 2/flask-rest-api`
+3. Install virtual environment dengan `python3 -m venv venv`
+4. Masuk ke virtual environment dengan `source venv/bin/activate` (Linux/Mac OS), atau `venv\Scripts\activate.bat` (Windows).
+5. Install requirement menggunakan `pip install -r requirements.txt`
+6. Jalankan server dengan `python server.py`
+
+> Pastikan python, xampp, atau service mysql lain sudah terinstall dan sudah dijalankan.
 
 # Testing menggunakan Postman
 > Pastikan postman sudah terinstall, ikuti bagian [Installasi Postman](#instalasi-postman)
