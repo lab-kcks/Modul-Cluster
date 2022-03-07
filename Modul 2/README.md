@@ -28,6 +28,10 @@
 - [Web Service Menggunakan python](#web-service-menggunakan-python)
   - [Install Dependencies](#install-dependencies)
   - [Import Module dan Initial Setup](#import-module-dan-initial-setup)
+- [Testing menggunakan Postman](#testing-menggunakan-postman)
+  - [User Interface](#user-interface)
+  - [Contoh Pengujian GET 1](#contoh-pengujian-get-1)
+  - [Contoh Pengujian POST](#contoh-pengujian-post)
 - [Latihan](#latihan)
 - [Referensi](#referensi)
 
@@ -243,7 +247,7 @@ Salah satu cara Web Service berinteraksi yaitu melalui protokol HTTP/HTTPS, Ada 
 
 ## Alur Web Service
 
--> flow website (client adalah user)
+-> Flowl Website (client adalah user)
   - client mengunjungi url tertentu di browser
   - browser mengirimkan request ke server dengan method `get`
   - server menerima request dan mengirimkan halaman yang diminta ke client
@@ -251,7 +255,7 @@ Salah satu cara Web Service berinteraksi yaitu melalui protokol HTTP/HTTPS, Ada 
   - browser menampilkan (*render*) halaman yang diterima dari server
   - client melihat halaman yang sudah ditampilkan (*render*)
 
--> flow webservice (client dapat berupa user ataupun aplikasi lain)
+-> Flow Webservice (client dapat berupa user ataupun aplikasi lain)
   - client mengirimkan request ke server
   - server menerima request dan melakukan parsing request
   - server melakukan operasi yang diminta pada request
@@ -826,11 +830,78 @@ if __name__ == "__main__":
 Merupakan bagian terakhir dalam program kita (file `server.py`), disini kita menentukan port yang digunakan oleh program kita, dan attribut lain seperti `debug`.
 Attribut `debug` ini digunakan untuk melakukan refresh program server secara otomatis ketika terjadi perubahan pada file `server.py`.
 
+# Testing menggunakan Postman
+> Pastikan postman sudah terinstall, ikuti bagian [Installasi Postman](#instalasi-postman)
+
+## User Interface
+![](img/pm-ui.png)
+
+1. Request List: List dari request-request yang telah kita save dan akan digunakan
+2. Request Name: Nama dari request, sebagai pembeda, tidak berhubungan langsung dengan request yang akan dibuat
+3. Request Method: Tempat dimana kita memilih request method yang akan digunakan, terdapat `GET`, `POST`, `PUT`, `DELETE`, dan sebagainya.
+4. Endpoint: Endpoint adalah tujuan atau target dari API Web-Service yang kita tuju.
+5. Config Tabs: Berisi bagian-bagian yang dapat kita atur sesuai dengan kebutuhan request.
+6. Body Type: Berisi tipe atau format data yang akan kita gunakan untuk mengirimkan body dari request kita.
+7. Body Data: Berisi data-data yang akan kita kirimkan.
+8. Tombol Send: Untuk mengeksekusi atau mengirimkan request.
+9. Response Body: Berisi response body yang diterima dari request yang telah dibuat.
+10. HTTP Status code: Berisi HTTP Status Code yang dikirimkan oleh server atas response dari request yang telah kita buat.
+
+## Contoh Pengujian GET 1
+1. Buat request baru
+
+![](img/pm-get-all-1.png)
+
+Jika tombol tidak tersedia, lakukan klik kanan -> add request
+
+
+2. Berikan nama "Get All" (penamaan request bebas)
+
+![](img/pm-get-all-2.png)
+
+3. Masukkan endpoint `localhost:5000/mata-pelajaran/` (jangan lupa `/` terakhir setelah `/mata-pelajaran`). Atur request menjadi `GET`
+
+![](img/pm-get-all-3.png)
+
+4. Klik tab `body`, pilih `form-data`, lalu masukkan parameter `nama` beserta value nya
+
+![](img/pm-get-all-4.png)
+
+5. Klik tombol `Send`
+
+![](img/pm-get-all-5.png)
+
+6. Lihat response yang diberikan
+
+![](img/pm-get-all-6.png)
+
+## Contoh Pengujian POST
+
+1. Ikuti langkah 1 - 4 pada [Contoh Pengujian GET](#contoh-pengujian-get-1), Tetapi ganti request method menjadi `POST`
+
+![](img/pm-post-1.png)
+
+2. Klik tombol `Send` dan lihat response yang diberikan
+
+![](img/pm-post-2.png)
+
+Pada contoh diatas belum diuji semua endpoint yang kita buat, silahkan lakukan eksplorasi dengan endpoint-endpoint lain yang sudah ada dalam program web-service kita.
+
+**Endpoint yang sudah dibuat**
+`GET /mata-pelajaran/`  
+`GET /mata-pelajaran/{:id}`  
+`POST /mata-pelajaran/`  
+`PUT /mata-pelajaran/{:id}`  
+`DELETE /mata-pelajaran/{:id}`  
+
+Catatan:
+
+`{:id}` merupakan `mapel_id` yang sudah kita tentukan dalam program, silahkan ganti dengan `id` yang sebenarnya. Contoh pada `GET` maka gunakan `localhost:5000/mata-pelajaran/1` untuk mengambil mata pelajaran dengan `id = 1`.
 
 # Latihan
-Buatlah endpoint untuk melakukan query pada tabel `Siswa`, Operasi yang harus dilakukan adalah:
-1. `get` untuk mendapatkan semua siswa.  
-2. `get` untuk mendapatkan satu siswa dengan `id` tertentu.  
+Buatlah endpoint untuk melakukan query pada tabel `Siswa`, Operasi yang harus dilakukan adalah:  
+1. `get` untuk mendapatkan semua siswa.    
+2. `get` untuk mendapatkan satu siswa dengan `id` tertentu.    
 3. `get` untuk mendapatkan siswa dengan `id_kota` tertentu.  
 4. `post` untuk membuat siswa baru.  
 5. `put/patch` untuk mengubah nama siswa.  
