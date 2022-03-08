@@ -247,7 +247,7 @@ Salah satu cara Web Service berinteraksi yaitu melalui protokol HTTP/HTTPS, Ada 
 
 ## Alur Web Service
 
--> Flowl Website (client adalah user)
+-> Flow Website (client adalah user)
   - client mengunjungi url tertentu di browser
   - browser mengirimkan request ke server dengan method `get`
   - server menerima request dan mengirimkan halaman yang diminta ke client
@@ -287,7 +287,8 @@ Pada bagian start-line terdapat tiga bagian yaitu:
 </div>
 
 <div>
-  <img src="img/http_response.png" alt="response"/>
+  <img src="img/http_respons
+  c.png" alt="response"/>
   <div align="center"><b>Contoh response HTTP</b></div>
 </div>
 
