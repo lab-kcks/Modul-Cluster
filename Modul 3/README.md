@@ -115,9 +115,8 @@ Penjelasan :
 ### Menjalankan program
 1. Sebelum menjalankan program kita perlu membuat view pada database terlebih dahulu, tujuannya agar kita tidak perlu melakukan inner join berkali-kali, dan kita dapat melakukan select secara langsung terhadap tabel yang sudah di join
 ```sql
-CREATE VIEW soal_jawaban AS SELECT jawaban.id_siswa, siswa.nama, siswa.nrp, siswa.id_kota, jawaban.jawaban, soal.jawaban_benar, soal.id_mapel FROM jawaban INNER JOIN soal ON jawaban.id_soal = soal.id INNER JOIN siswa ON jawaban.id_siswa = siswa.id;
+CREATE VIEW soal_jawaban AS SELECT jawaban.id_siswa, siswa.nama, siswa.nrp, siswa.id_kota, jawaban.jawaban, soal.jawaban_benar, jawaban.id_mapel FROM jawaban INNER JOIN soal ON jawaban.id_soal = soal.id INNER JOIN siswa ON jawaban.id_siswa = siswa.id;
 ```
-<br><br><img src= "img/47.JPG"><br><br>
 2. Maka kita akan mendapati sebuah views bernama soal_jawaban<br><br><img src= "img/48.png"><br><img src= "img/49.JPG"><br><br>
 3. Jika sudah maka kita dapat menjalankan programnya dengan command (di cmd) ```python <<namafile>>.py```<br><br><img src= "img/50.JPG"><br><br>
 4. Maka kita akan mendapatkan file csv yang berisi nilai dari kota yang kita proses<br><br><img src= "img/51.JPG"><br><img src= "img/52.JPG"><br><br>
