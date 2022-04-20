@@ -191,7 +191,7 @@ Install library yang diperlukan dengan command :
 2. ```tar -xvf cbtjatim-cluster2022.tar.gz``` : untuk melakukan extract terhadap file tar.gz yang baru di download<br><br><img src= "img/38.png"><br><br>
 3. ```wget -O - pi.dk/3 || curl pi.dk/3/ ``` : Menginstall GNU Parallel untuk mengimport database<br><br><img src= "img/39.png"><br><img src= "img/40.png"><br><img src= "img/41.png"><br><br>
 4. ```mysql -u root``` : masuk ke dalam mysql server
-5. ```CREATE DATABASE CBT_JATIM ``` : membuat database bernama CBT_JATIM
+5. ```CREATE DATABASE CBT_JATIM; ``` : membuat database bernama CBT_JATIM
 6. ```cd schema``` : masuk ke folder schema
 7. ```ls -A1 *.sql | parallel --joblog joblog.txt mysql -uroot CBT_JATIM "<"``` : mengimport schema ke dalam database CBT_JATIM<br><br><img src= "img/42.png"><br><br>
 8. Untuk tabel-tabel lain ulangi langkah nomor 6 dan 7, namun cd ke folder terkait, misal :
