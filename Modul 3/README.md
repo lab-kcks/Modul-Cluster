@@ -187,8 +187,8 @@ Install library yang diperlukan dengan command :
 
 ### Download Database
 
-1. Download database dari google drive dengan command sebagai berikut<br><br>```wget https://www.dropbox.com/s/c0hce4hr9ij6whu/cbtjatim-cluster2022.tar.gz?dl=0 -O cbtjatim-cluster2022.tar.gz```<br><br><img src= "img/37.png"><br><br>
-2. ```tar -xvf cbtjatim-cluster2022.tar.gz``` : untuk melakukan extract terhadap file tar.gz yang baru di download<br><br><img src= "img/38.png"><br><br>
+1. Download database dari dropbox dengan command sebagai berikut<br><br>```wget https://www.dropbox.com/s/c0hce4hr9ij6whu/cbtjatim-cluster2022.tar.gz?dl=0 -O cbtjatim-cluster2022.tar.gz```<br><br>
+2. ```tar -xvf cbtjatim-cluster2022.tar.gz``` : untuk melakukan extract terhadap file tar.gz yang baru di download<br><br>
 3. ```wget -O - pi.dk/3 || curl pi.dk/3/ ``` : Menginstall GNU Parallel untuk mengimport database<br><br><img src= "img/39.png"><br><img src= "img/40.png"><br><img src= "img/41.png"><br><br>
 4. ```mysql -u root``` : masuk ke dalam mysql server
 5. ```CREATE DATABASE CBT_JATIM; ``` : membuat database bernama CBT_JATIM
