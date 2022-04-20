@@ -202,7 +202,7 @@ ls -A1 *.sql | parallel --joblog joblog.txt mysql -uroot - CBT_JATIM "<"
 <br><br><img src= "img/43.png"><br><img src= "img/44.png"><br><br>
 
 ### Menjalankan Program Python
-Jika sudah berhasil melakukan semua langkah, terakhir jalankan program berikut ([program pengolahan nilai](#program-python)) dengan command ```python3 <<namaprogram>>.py``` **JANGAN LUPA BUAT VIEW DI DATABASE**<br>```CREATE VIEW soal_jawaban AS SELECT Jawaban.id_siswa, Siswa.nama, Siswa.nrp, Siswa.id_kota, Jawaban.jawaban, Soal.jawaban_benar, Jawaban.id_mapel FROM Jawaban INNER JOIN Soal ON Jawaban.id_soal = Soal.id INNER JOIN Siswa ON Jawaban.id_siswa = Siswa.id;```<br><br><img src= "img/45.png"><br><img src= "img/46.png"><br><br>
+Jika sudah berhasil melakukan semua langkah, terakhir jalankan program berikut ([program pengolahan nilai](#program-python)) dengan command ```python3 <<namaprogram>>.py``` **JANGAN LUPA BUAT VIEW DI DATABASE**<br><br>```CREATE VIEW soal_jawaban AS SELECT Jawaban.id_siswa, Siswa.nama, Siswa.nrp, Siswa.id_kota, Jawaban.jawaban, Soal.jawaban_benar, Jawaban.id_mapel FROM Jawaban INNER JOIN Soal ON Jawaban.id_soal = Soal.id INNER JOIN Siswa ON Jawaban.id_siswa = Siswa.id;```<br><br><img src= "img/45.png"><br><img src= "img/46.png"><br><br>
 
 ## Referensi
 https://www.wartaekonomi.co.id/read366664/apa-itu-bahasa-pemrograman-python<br>
