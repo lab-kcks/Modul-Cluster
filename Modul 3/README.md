@@ -71,7 +71,7 @@ if __name__ == '__main__':
     print("Ready to worker")
     cnt = 0
     with BoundedProcessPoolExecutor(max_workers=n_jobs) as worker:
-        for id_kota in range(1,2):
+        for id_kota in range(1,5):
             print('#%d Worker initialization %s' % (cnt, id_kota))
             cnt += 1
             print("Load DB %d, please wait ..." % id_kota)
@@ -187,8 +187,8 @@ Install library yang diperlukan dengan command :
 
 ### Download Database
 
-1. Download database dari dropbox dengan command sebagai berikut<br><br>```wget https://www.dropbox.com/s/j1i7ng6ygumd70b/new-cbtjatim-cluster2022.tar.gz?dl=0 -O cbtjatim-cluster2022.tar.gz```<br><br>
-2. ```tar -xvf cbtjatim-cluster2022.tar.gz``` : untuk melakukan extract terhadap file tar.gz yang baru di download<br><br>
+1. Download database dari dropbox dengan command sebagai berikut<br><br>```wget https://www.dropbox.com/s/fb3gdwk12b0t69h/cbtjatimsm-cluster2022.tar.gz?dl=0 -O cbtjatimsm-cluster2022.tar.gz```<br><br>
+2. ```tar -xvf cbtjatimsm-cluster2022.tar.gz``` : untuk melakukan extract terhadap file tar.gz yang baru di download<br><br>
 3. ```apt install parallel  ``` atau ```wget -O - pi.dk/3 || curl pi.dk/3/ ```: Menginstall GNU Parallel untuk mengimport database<br><br><img src= "img/39.png"><br><img src= "img/40.png"><br><img src= "img/41.png"><br><br>
 4. ```mysql -u root``` : masuk ke dalam mysql server
 5. ```CREATE DATABASE CBT_JATIM; ``` : membuat database bernama CBT_JATIM
