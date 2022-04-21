@@ -187,7 +187,7 @@ Install library yang diperlukan dengan command :
 
 ### Download Database
 
-1. Download database dari dropbox dengan command sebagai berikut<br><br>```wget https://www.dropbox.com/s/c0hce4hr9ij6whu/cbtjatim-cluster2022.tar.gz?dl=0 -O cbtjatim-cluster2022.tar.gz```<br><br>
+1. Download database dari dropbox dengan command sebagai berikut<br><br>```wget https://www.dropbox.com/s/j1i7ng6ygumd70b/new-cbtjatim-cluster2022.tar.gz?dl=0 -O cbtjatim-cluster2022.tar.gz```<br><br>
 2. ```tar -xvf cbtjatim-cluster2022.tar.gz``` : untuk melakukan extract terhadap file tar.gz yang baru di download<br><br>
 3. ```apt install parallel  ``` atau ```wget -O - pi.dk/3 || curl pi.dk/3/ ```: Menginstall GNU Parallel untuk mengimport database<br><br><img src= "img/39.png"><br><img src= "img/40.png"><br><img src= "img/41.png"><br><br>
 4. ```mysql -u root``` : masuk ke dalam mysql server
