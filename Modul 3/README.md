@@ -159,6 +159,9 @@ Karena kita akan menggunakan SQL maka kira harus menginstall MariaDB terlebih da
 7. ```ls``` : melakukan listing file apa saja yang ada dalam folder<br><br><img src= "img/21.png"><br><br>
 8. ```rm -r *``` : hapus semua file dalam folder (karena kita akan melakukan install ulang)<br><br><img src= "img/22.png"><br><br>
 9. ```mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql``` : untuk menginstall ulang mysql (jika tidak diinstall ulang biasanya akan ada masalah, yaitu database ter-reset sendiri)<br><br><img src= "img/23.png"><br><br>
+
+> jika ada error "File does not exists" bisa dilanjutkan ke step berikutnya karena folder sudah dihapus.
+
 10. ```systemctl restart mysqld``` : melakukan restart terhadap service mysqld<br><br><img src= "img/24.png"><br><br>
 11. ```systemctl restart mysql.service``` : melakukan restart terhadap service mysql.service<br><br><img src= "img/25.png"><br><br>
 12. ```systemctl restart mariadb``` : melakukan restart terhadap service mariadb<br><br><img src= "img/26.png"><br><br>
@@ -194,6 +197,10 @@ Install library yang diperlukan dengan command :
 5. ```CREATE DATABASE CBT_JATIM; ``` : membuat database bernama CBT_JATIM
 6. ```cd schema``` : masuk ke folder schema
 7. ```ls -A1 *.sql | parallel --joblog joblog.txt mysql -uroot CBT_JATIM "<"``` : mengimport schema ke dalam database CBT_JATIM<br><br><img src= "img/42.png"><br><br>
+
+> jika ada error "Database CBT_JATIM exists" bisa dilanjutkan mengimport dari folder selanjutnya karena database sudah terbuat.
+
+
 8. Untuk tabel-tabel lain ulangi langkah nomor 6 dan 7, namun cd ke folder terkait, misal :
 ```
 cd Jawaban
@@ -209,6 +216,20 @@ Jika ada error `ValueError: numpy.ndarray Size Changed ..` silahkan mendownload 
 sudo apt install libatlas-base-dev
 sudo pip install numpy
 ```
+
+Jika file csv tidak muncul:
+1. Cek kembali username dan password database di script python, salah satu cara untuk memeriksa yaitu:
+```
+mysql -u <<username>> -p CBT_JATIM # (lalu masukan password yang sesuai, jika tidak menggunakan password hilangkan `-p`
+```
+2. Pastikan view sudah dibuat (masuk ke mysql shell terlebih dulu): 
+```
+mysql> use CBT_JATIM;
+mysql> show tables;
+```
+3. Jika sudah melakukan step-step diatas tetapi file csv masih tidak muncul, silahkan tulis di laporan
+
+
 
 ## Referensi
 https://www.wartaekonomi.co.id/read366664/apa-itu-bahasa-pemrograman-python<br>
