@@ -160,11 +160,12 @@ Karena kita akan menggunakan SQL maka kira harus menginstall MariaDB terlebih da
 4. ```mysql_secure_installation``` : digunakan untuk melakukan konfigurasi instalasi mysql<br><br><img src= "img/18.png"><br><br>
 5. ```mariadb --version``` : digunakan untuk memeriksa apakah mariadb sudah terinstall<br><br><img src= "img/19.png"><br><br>
 6. ```cd /var/lib/mysql``` : untuk masuk ke folder di mana mysql diinstall<br><br><img src= "img/20.png"><br><br>
+> jika ada error "File does not exists" bisa dilanjutkan ke step 9 berikutnya karena folder sudah dihapus.
+
 7. ```ls``` : melakukan listing file apa saja yang ada dalam folder<br><br><img src= "img/21.png"><br><br>
 8. ```rm -r *``` : hapus semua file dalam folder (karena kita akan melakukan install ulang)<br><br><img src= "img/22.png"><br><br>
 9. ```mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql``` : untuk menginstall ulang mysql (jika tidak diinstall ulang biasanya akan ada masalah, yaitu database ter-reset sendiri)<br><br><img src= "img/23.png"><br><br>
 
-> jika ada error "File does not exists" bisa dilanjutkan ke step berikutnya karena folder sudah dihapus.
 
 10. ```systemctl restart mysqld``` : melakukan restart terhadap service mysqld<br><br><img src= "img/24.png"><br><br>
 11. ```systemctl restart mysql.service``` : melakukan restart terhadap service mysql.service<br><br><img src= "img/25.png"><br><br>
