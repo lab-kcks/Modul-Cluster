@@ -147,6 +147,10 @@ Dikarenakan Raspberry yang berada di lab KCKS yang menggunakan jaringan dari ITS
 6. Import konfigurasi OpenVPN <br><br><img src= "img/14.png"><br><br>
 7. Maka VPN siap digunakan <br><br><img src= "img/15.png"><br><br>
 
+login yang digunakan:
+usename: pi
+password raspberry
+
 ### Install MariaDB
 Karena kita akan menggunakan SQL maka kira harus menginstall MariaDB terlebih dahulu, dan berikut adalah caranya :
 
