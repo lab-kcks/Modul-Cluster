@@ -28,9 +28,10 @@ def create_file():
 for idx_siswa in range(total_siswa):
     id_siswa = idx_siswa + 1
 
-    # print("id_siswa: ", id_siswa, "|", "file_number: ", file_number)
-
-    if id_siswa % config.total_siswa == 0 or id_siswa >= total_siswa - config.total_siswa:
+    # if id_siswa % config.total_siswa == 0 or id_siswa >= total_siswa - config.total_siswa:
+        
+    if id_siswa % 12500 == 0:
+        print("id siswa processed: ", id_siswa)
         f.close()
         [writer, f] = create_file()
         print("file_number: ", file_number)

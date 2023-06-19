@@ -16,6 +16,7 @@ fake = Faker()
 total_kota = len(config.kota)
 total_siswa = config.total_siswa
 id = 0
+sum_siswa = 0
 
 f = open("csv/siswa.csv", "w")
 writer = csv.writer(f, doublequote=True, quoting=csv.QUOTE_ALL, lineterminator="\n")
@@ -44,7 +45,8 @@ for idx_kota in range(total_kota):
         row = [id, id_kota, nrp, nama]
         writer.writerow(row)
     # f.close()
-    print("%d siswa generated" % total_siswa)
+    print("%d siswa generated\n" % total_siswa)
+    sum_siswa = sum_siswa + total_siswa
     total_siswa = config.total_siswa
-
+print("sum siswa generated:", sum_siswa)
 f.close()
