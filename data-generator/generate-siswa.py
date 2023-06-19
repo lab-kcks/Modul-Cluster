@@ -25,6 +25,15 @@ writer.writerow(header)
 
 for idx_kota in range(total_kota):
     id_kota = idx_kota + 1
+    print("processing id_kota : %d" % id_kota)
+    if id_kota in range(30, 38 + 1):
+        total_siswa = total_siswa * 2
+
+    # f = open("csv/id_kota_%d.csv" % id_kota, "w")
+    # writer = csv.writer(f, doublequote=True, quoting=csv.QUOTE_ALL, lineterminator="\n")
+    # header = ["id", "id_kota", "nrp", "nama"]
+
+    # writer.writerow(header)
 
     # zfill = menambahkan 0 di depan sampai panjang n (padding)
     prefix_kota = str(id_kota).zfill(3)
@@ -34,5 +43,8 @@ for idx_kota in range(total_kota):
         nama = fake.name()
         row = [id, id_kota, nrp, nama]
         writer.writerow(row)
+    # f.close()
+    print("%d siswa generated" % total_siswa)
+    total_siswa = config.total_siswa
 
 f.close()

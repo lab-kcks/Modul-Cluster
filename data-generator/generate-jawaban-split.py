@@ -5,11 +5,13 @@ import json
 
 fake = Faker()
 
-total_siswa = config.total_siswa * len(config.kota)
+total_siswa = config.total_siswa * len(config.kota) + (config.total_siswa * 9)
 total_soal = config.total_soal
 id = 0
 
 file_number = 1
+
+print("total siswa: ", total_siswa)
 
 def create_file():
     global file_number
@@ -26,11 +28,12 @@ def create_file():
 for idx_siswa in range(total_siswa):
     id_siswa = idx_siswa + 1
 
-    print("id_siswa: ", id_siswa, "|", "file_number: ", file_number)
+    # print("id_siswa: ", id_siswa, "|", "file_number: ", file_number)
 
     if id_siswa % config.total_siswa == 0 or id_siswa >= total_siswa - config.total_siswa:
         f.close()
         [writer, f] = create_file()
+        print("file_number: ", file_number)
         file_number += 1
 
     for idx_mapel in range(len(config.mata_pelajaran)) :
